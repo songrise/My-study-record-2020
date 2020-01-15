@@ -5,4 +5,4 @@
 嗯 努力
 
 This is a repository for recording my studying process
-include my source code and log
+including my source code and log
