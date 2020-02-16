@@ -1,0 +1,26 @@
+"""
+- Let X and Y expressed in 0/1 bits
+- Since X < Y, the number of bits in X is less than that in Y.
+- Let |X| and |Y| denote the number of bits in X and Y, respectively. Thus, |X|<=|Y|.
+- We label the bits in Y starting from the most significant bit by |Y|, |Y|-1, ..., 1.
+- Set min_operations to 0.
+- Compare |X| and bits |Y|, ..., |Y|-|X|+1 in Y
+  - If they are equal, next_bit = |Y|-|X|.
+  - Else if |X| is less,
+    - Add just enough +1 operations, say x, to make them equal.
+    - min_operations += x
+    - Update X
+    - next_bit = |Y|-|X|
+  - Else,
+    - Add just enough +1 operations, say x, to make X equal to the bits |Y|, ..., |Y-X| in Y.
+    - min_operations += x
+    - Update X
+    - next_bit = |Y|-|X|-1
+- Starting from next_bit to bit 1 in Y,
+  - Multiply X by 2 in binary
+  - min_operations += 1
+  - If the bit in Y is 1,
+    - Add 1 to X in binary
+    - min_operations += 1
+- Return min_operations
+"""

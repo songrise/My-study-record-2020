@@ -1,0 +1,21 @@
+函数 9.10 复习题 位置11084
+##########################
+
+1. 形式参数是定义函数所用的标识符，其并不包含某个特定值。实际参数是实际上传递给
+    函数的值。
+
+2.
+    a. int donut(int n);
+    b. int gear(int a, int j);
+    c. int guess(void);
+    d. void stuff_it(double i, double * pt);
+
+6.
+    void alter(int *x, int *y)
+    {
+        int diff, sum;
+        diff = *x - *y;
+        sum = *x + *y;
+        *x = diff;
+        *y = sum;
+    }
