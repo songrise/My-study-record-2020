@@ -6,6 +6,6 @@ int main(int argc, char const *argv[])
     cout << "I have " << carrot << " Carrots";
     carrot++;
     cout << "\nNow I have " << carrot << " Carrots!";
-
+    
     return 0;
 }
