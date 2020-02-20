@@ -134,3 +134,4 @@ what作主语从句
 
 后半段没看懂 omission was telling ..(?) telling的宾语是什么？
 a slight still 是什么意思？
+
