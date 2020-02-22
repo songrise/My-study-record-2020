@@ -52,8 +52,13 @@ defenceless:adj,软弱的，无防备的
 
 let alone: 更不用说
 ****
+> ## And people entering hospitals and offices must have their temperature taken first.
+****
+> ## Such is the American tech titan’s reliance on the Chinese mainland for parts and assembly that United Airlines typically shuttles some 50 of its executives between California and China each day.
 
-
+Such is.. that... 强调句式
+some +数字:大约  
+shuttles:n,来往两地之间的航班（或火车）,v,频繁往来（于两地之间）
 
 
 
