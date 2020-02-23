@@ -59,9 +59,40 @@ let alone: 更不用说
 Such is.. that... 强调句式
 some +数字:大约  
 shuttles:n,来往两地之间的航班（或火车）,v,频繁往来（于两地之间）
+****
+> ## That certainly seems to be the view of the candidates for the Labour Party leadership, for they never miss an opportunity to boast about their proletarian credentials.
+用for 解释原因  
+boast:吹嘘  
+credentials:证据，凭据，国书
+****
+> ## But mourning should not permanently cloud thinking, and a celebration of working-class identity should not degenerate into a replay of the Monty Python’s “Four Yorkshiremen” sketch.
 
+cloud：v；蒙蔽；遮掩；使混乱；使忧郁。  
+****
+> ## Its leadership candidates still talk as though Big Capital faced Big Labour across a battlefield of picket lines, ignoring the transformation of the economy brought about by globalisation and technology.
 
+as though：好像，似乎  
+bring out 导致，引起
+****
+> ##  Lisa Nandy, an outsider on whom the odds are shortening, is a red princess whose immigrant father became a professor and helped to found the Equal Opportunities Commission, and whose grandfather was a distinguished Liberal mp.
+长句，连用两个从句。缩句：“*LN is princess* ”  
+an outsider on whom the odds are shortening 是什么意思？
+****
 
+> ## This is particularly true of Britain, which enthusiastically embraced policies favoured strongly by the credentialled elites (globalisation, free markets, social liberalism), only to summon up a mighty backlash in the form of Brexit.
 
+非谓语的使用 (embraced, favoured)  
+credentialled：adj. 有资质的
+only to (do):表达一个意想不到的结果。    
+backlash：（对社会变动的）强烈抵制
+****
+> ## The rationale for this selection was partly down to wishful thinking on the part of those surveyed (designers, actors and musical performers were three of the top 15 jobs).
+
+rationale:根本原因
+be down to：可归因为...
+****
+> ## Wherever the root of the problem lies—be it the education system, government policy or corporate recruiting practices—it needs to be identified and fixed.
+这句里的be it（句型）：虚拟语气， 相当于Whether it be...的省略再倒装  
+*be 也可以换成其他实义动词*
 
 
