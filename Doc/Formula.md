@@ -1,4 +1,4 @@
-# Formula Editing
+# <div align = middle> Formula Editing </div>
 [来源](https://www.jianshu.com/p/25f0139637b7)
 
   行内公式是在公式代码块的基础上前面加上$ ，后面加上$ 组成的，而行间公式则是在公式代码块前后使用$$ 和$$ 。  
