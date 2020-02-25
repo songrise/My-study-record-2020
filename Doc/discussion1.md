@@ -1,0 +1,3 @@
+The first thought coming to my mind after I finished reading the two tales is that death is doomed. The servant in first story (The Appointment in Samarra) wishes to escape from the fate of death, only to run into death. Likewise, the young man in second tale who saved those doomed to death ended up being swept away by death. Thus I think both two stories are try to tell us such a principle that death, which is the final fate of all beings, is fair to everyone. As death is inevitable, it is our attitude toward life that counts. What we ought to do is to treasure our life and make  most of it, rather than attempt to avoid death.
+
+In terms of difference, I think the first story is telling us death is doomed while the second is foucusing on the fairness of death.
