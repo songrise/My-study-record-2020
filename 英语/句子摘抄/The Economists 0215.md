@@ -4,6 +4,7 @@
 > ## Parties to ethnic conflicts across the world have long found common cause with Northern Ireland’s Roman Catholics, who contend that the separation from the south is an illegitimate vestige of 500 years of incompetent and often callous domination from London. 
 
 contend:声称，主张  
+vestige: n:遗迹，残余
 callous：冷酷无情的；不称职的
 
 ---
@@ -17,7 +18,9 @@ be bound to:一定要
 
 ****
 > ## Cities subject to a larger number of repatriations saw little change or even declines in native employment and wages.
-subject to:处于...中，受限于...,附属于... ,服从于...
+subject to:处于...中，受限于...,附属于... ,服从于...  
+“see” 的用法
+
 ****
 > ## Herr Professor also writes that populist governments usually try to hijack the state apparatus, are prone to corruption and practise ‘mass clientelism’.
 
@@ -28,7 +31,7 @@ subject to:处于...中，受限于...,附属于... ,服从于...
 > ## In a bucolic setting, fringed by the snowcloaked mountains of south-eastern Kazakhstan, lie two adjoining villages separated by a field of bleating fat-tailed sheep.
 
 句子结构好。  
-fringed: 形成...的边缘。
+fringed: 形成...的边缘。 (fringe:n,刘海，缘饰，(沿…边缘的)一排(树木、房屋等),v,形成...的边缘)  
 adjoining: 毗邻，紧接的。
 ****
 
@@ -38,6 +41,7 @@ off the ground：开始，起步
 
 ****
 > ## Not content with forcing the doctor to deny reality,police added school-bully phrases, asking him to write “I can” and “I understand” when asked if he would now calm down and heed the police, or face legal penalties.
+be content with: 对...满意  
 heed:v,n:注意，留心（上面摘抄有heedless)
 
 ****
@@ -45,6 +49,7 @@ heed:v,n:注意，留心（上面摘抄有heedless)
 
 这句的修辞很有力  
 law-abinding:遵纪守法的；（abide:v,遵守，遵照）  
+accountability:责任，义务  
 instrument:n，手段  
 defenceless:adj,软弱的，无防备的
 ****
@@ -63,6 +68,7 @@ shuttles:n,来往两地之间的航班（或火车）,v,频繁往来（于两地
 > ## That certainly seems to be the view of the candidates for the Labour Party leadership, for they never miss an opportunity to boast about their proletarian credentials.
 用for 解释原因  
 boast:吹嘘  
+proletarian: adj,无产阶级的 n,无产者
 credentials:证据，凭据，国书
 ****
 > ## But mourning should not permanently cloud thinking, and a celebration of working-class identity should not degenerate into a replay of the Monty Python’s “Four Yorkshiremen” sketch.

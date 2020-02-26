@@ -16,7 +16,9 @@ tariffs：n: 关税
 
 > ## Every firm is different, but those hiring a ceo, or aspiring to be one, should prize a few qualities. Mastering the tricky, creative and more collaborative game of allocating intangible capital is essential. 
 
-prize:v.高度重视  capital：n.资本 intangible: 难以形容（或理解的）；不易度量的，无形的；
+prize:v.高度重视  
+capital：n.资本   
+intangible: 难以形容（或理解的）；不易度量的，无形的；
 ***
 > ## As they repay their debt to society, many Hong Kong prisoners are put to work making useful items like road signs, uniforms, furniture—and the surgical masks that now ob scure the faces of almost everyone on the city’s subdued streets.
 
@@ -30,6 +32,7 @@ around the clock：不分昼夜;日夜不停
 > ## As protests intensified last year, bets against HongKong’s currency, which has been firmly pegged to the dollar since 1983, became unusually popular. 
 
 又是As开头
+fret:v,磨损，腐蚀，焦急.n,烦躁，烦恼，腐蚀处
 peg：v.与...挂钩
 
 ***
@@ -53,7 +56,8 @@ among开头
 
 > ## The physical and psychological distance between Europe and East Asia is shrinking as the sparsely populated expanse at the heart of Eurasia is being wrangled,through new infrastructure,to manageable size.
 
-sparsely：adv：稀松地 wrangle：n,v 争论（？放在这里讲不通）
+sparsely：adv：稀松地   
+wrangle：n,v 争论（？放在这里讲不通）
 
 ***
 > ## South-East Asia has long been important to China’s economy—not least because of its 30m “overseas Chinese”, many with capital and management nous.
@@ -62,6 +66,7 @@ sparsely：adv：稀松地 wrangle：n,v 争论（？放在这里讲不通）
 ***
 > ## cosco took a long lease on two terminals of the container port with a promise to build a third. Soon, the contrast in productivity between those and the remaining Greek-run one, plagued by inefficiency and powerful unions, was stark.
 
+句子的组织方式
 plague：v：给…造成长时间的痛苦(或麻烦); 困扰; 折磨; 
 第二局的结构 S，补充，be ...
 ***
@@ -78,7 +83,8 @@ white elephant：华而不实的东西
 
 > ## First, by abandoning the classical intimations implied in the Chinese phrase, a sense of China’s return to historical greatness has been removed for the benefit of foreign audiences.
 
-找到主语. 这两句扩句、组织方式很好。
+找到主语. 这两句扩句、组织方式很好。  
+for the benefit of： 为了...的利益
 ***
 
 > ## Second, a power that wants to conceal from other countries what, in terms of loftier ambitions for global pre-eminence, it is signalling to its own people, could do worse than choose a bland, unthreatening word like “initiative”.
@@ -89,7 +95,7 @@ bland：平淡的
 ****
 > ## Asked to craft a metaphor for all that the world admires and fears about modern China, a novelist could hardly improve on the coronavirus hospitals now rising, at fantastic speeds, in disease-stricken cities.
 
-
+****
 > ## Yet if China’s resolve impresses outsiders, the dark side of one party rule also stands exposed.
 
 Yet句。从··
@@ -102,7 +108,7 @@ Yet句。从··
 
 又是扩句的例子。缩句：*1:The hospital will soon have room*
     *2: The issues make questions acute.*
-
+ringed:v：包围，环绕
 ****
 
 > ## Should hasty decisions lead to products that are not completely safe, people’s faith in vaccines could be damaged.
