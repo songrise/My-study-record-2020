@@ -26,8 +26,15 @@ then, $P(X=2)=\frac {\binom{8}{5} \binom 9 2+\binom83 \binom 9 2+\binom82 \binom
 3. for $P(X=3)$, it excludes $X=1 orX=2$, so first draw cannot be (10), and the second draw cannot be (1,10) (5,5) (5,10).  
     The outcome should be S={(1,1,10),(1,5,5),(1,5,10),(5,1,5),(5,1,10)}  
 then,$P(X=3)=\frac{\binom{5}{1}\binom{4}{1}\binom{2}{1}+\binom{5}{1}\binom{3}{1}\binom{2}{1}+\binom{5}{1}\binom{3}{1}\binom{2}{1}+\binom{3}{1}\binom{5}{1}\binom{2}{1}+\binom{3}{1}\binom{5}{1}\binom{2}{1}} {\binom{5}{1}\binom{7}{1}\binom{8}{1}+\binom{3}{1}\binom{5}{1}\binom{8}{1}}=$
-   
+
 So,we have $P(x\le 3)=++=\approx$
 
 ## (d)
-$\Sigma\Epsilon\Pi$
+they are dependent.  
+Especially, suppose we draw 10-dollar coin at first, then we will have $X=1$ and $Y=10$.  
+$P(X=1)=\frac{\binom{2}{1}}{\binom{10}{1}}=\frac 1 5$  
+$P(Y=10)=\frac{\binom{2}{1}}{\binom{10}{1}}+{\frac {\binom83 \binom 9 2}{\binom81\binom91}}=$  
+$P(X=1\cap Y=10)=\frac{\binom{2}{1}}{\binom{10}{1}}=\frac 1 5$   
+$P(X=1)\times P(Y=10)\ne P(X=1\cap Y=10)$  
+So, they are dependent.
+
