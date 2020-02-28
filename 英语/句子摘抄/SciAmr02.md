@@ -36,3 +36,20 @@ nonetheless的用法
 > ## Players could request that others perform favors to demonstrate their power, or they could submit to demands made on them.
 
 submit to:顺从于
+****
+> ## As of next year, all new turbines for power plants made in the European Union are supposed to ship ready to burn a hydrogen–natural gas blend, and the E.U.’s manufacturers claim the turbines will be certified for 100 percent hydrogen by 2030.
+*are supposed to ship ready to burn a hydrogen–natural gas blend*是什么意思?s
+****
+> ## During certain days, wind and solar generated more than 75 percent of the country’s power; on other days, the share dropped to 15 percent.
+share:n,份，份额；股份；责任，贡献
+****
+> ## Certain European experts say the M.I.T. and California studies are too myopic. For several decades European researchers have been zooming out from the power grid to a larger view, considering the full spectrum of energy used in modern society.
+这句话连续的运用关于视野的比喻。
+"*Myopic,zooming out, larger view*",值得学习
+****
+> ## If industry and heavy transport embrace renewable hydrogen, regional hydrogen networks could emerge to distribute it, and they could also supply the carbon-free gas to power plants that back up electricity grids.
+embrace的用法，虽然常见，但是用出来还是很地道
+****
+> ## A recent study by the Energy Futures Initiative, a think tank led by former M.I.T. nuclear physicist Ernest Moniz, who was Obama’s second energy secretary, calls on California to tap the “enormous value” offered by renewable hydrogen and other low-carbon fuels.
+think tank：智囊团
+tap:v,轻敲；装上嘴子；窃听；采用；在树上切口；委任；非法劝说转会.这里估计是"采用"
