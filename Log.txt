@@ -230,3 +230,7 @@ CSAPP：看了第五章(Optimazing Performance) 的视频.
 英语：45单词，雅思单词着实有丶难
 csapp：上了课，这个算不？
 其他：利用github pages 建了个[个人博客](songrise.github.io)
+#######################
+
+csapp：看了些第七章（链接），目前看到7.6，这章的内容比较陌生，主要是
+以前没怎么接触。ELF格式还是有些不怎么懂。
