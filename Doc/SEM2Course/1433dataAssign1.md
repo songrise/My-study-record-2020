@@ -29,7 +29,7 @@ then,$P(X=3)=\frac{\binom{5}{1}\binom{4}{1}\binom{2}{1}+\binom{5}{1}\binom{3}{1}
 
 So,we have $P(x\le 3)=++=\approx$
 
-## (1.d)
+## (1.d) 不相关不代表不独立
 they are dependent.  
 Especially, suppose we draw 10-dollar coin at first, then we will have $X=1$ and $Y=10$.  
 $P(X=1)=\frac{\binom{2}{1}}{\binom{10}{1}}=\frac 1 5$  
@@ -67,3 +67,66 @@ $$
 E[X]=\sum{X·P(X)}= 
 $$
 
+|  Y,X  |     1     |        2        |        3        |        4         |        5         |        6        |        7        |        8         |        9         |        10        |
+| :---: | :-------: | :-------------: | :-------------: | :--------------: | :--------------: | :-------------: | :-------------: | :--------------: | :--------------: | :--------------: |
+|  10   | $\frac15$ | $\frac{9}{100}$ |                 |                  |                  |                 |                 |                  |                  | $\frac{1}{1024}$ |
+|  11   |           |  $\frac1{10}$   | $\frac{9}{100}$ |                  |                  |                 | $\frac{3}{640}$ |                  |                  |                  |
+|  12   |           |                 |  $\frac1{20}$   | $\frac{27}{400}$ |                  |                 |                 | $\frac{3}{1280}$ |                  |                  |
+|  13   |           |                 |                 |   $\frac1{40}$   | $\frac{27}{400}$ |                 |                 |                  | $\frac{3}{2560}$ |                  |  |
+|  14   |           |                 |                 |                  |   $\frac1{80}$   | $\frac{9}{320}$ |                 |                  |                  | $\frac{3}{5120}$ |  |
+|  15   |           | $\frac{3}{50}$  |                 |                  |                  | $\frac{1}{160}$ |                 |                  |                  |                  |  |
+|  16   |           |                 | $\frac{3}{50}$  |                  |                  |                 | $\frac{1}{320}$ |                  |                  |                  |  |
+|  17   |           |                 |                 | $\frac{9}{200}$  |                  |                 |                 | $\frac{1}{640}$  |                  |                  |  |
+|  18   |           |                 |                 |                  | $\frac{3}{100}$  |                 |                 |                  | $\frac{1}{1280}$ |                  |  |
+|  19   |           |                 |                 |                  |                  | $\frac{3}{160}$ |                 |                  |                  | $\frac{1}{2560}$ |  |
+
+$$
+E(X,Y)=\sum(XY)*P(XY)=\\Cov(X,Y)=E(X,Y)-E(X)E(Y)
+$$
+
+# Question2
+## (2.a)
+Proof:
+
+Note that $S=\bigcup_{i=1}^n F_i$, then for any event $E$,
+$$
+\begin{aligned}
+E&=E\cap S
+\\&=E\cap (\bigcup_{i=1}^n F_i)
+\end{aligned}
+$$
+Also note that for any $(i,j),1\le i, j \le n$, we have
+$F_iF_j=\emptyset$,  
+Then for any event E, $(E\cap F_i)(E\cap F_j)=\emptyset$ (i.e. they are disjoint)  
+By the distributive law, $E\cap (\bigcup_{i=1}^n F_i)=\bigcup_{i=1}^n (F_i\cap E)$
+
+$$
+P(E)=P\bigg(\bigcup_i^n (E \cap F_i)\bigg)=\sum_{i}^n P(E \cap F_i)=\sum_{i}^n P(E | F_i) P(F_i).
+$$
+
+## (2.b)
+Let $O$ denote the event that the sample student is outstanding, and $A, B, C, D$ denote that the student come from school A, B, C, D respectively.  
+Then $S=A\cup B\cup C\cup D$, it can be easily derived that:   
+$$
+P(A)=\frac {3} {10},P(B)=\frac {1} {5},P(C)=\frac {1} {4},P(D)=\frac {1} {4}
+$$
+By the Law of total Probabiliy,
+$$
+\begin{aligned}
+P(O)&=P(O\cap A)+P(O\cap B)+P(O\cap C)+P(O\cap D)
+\\&=P(O|A)P(A)+ P(O|B)P(B)+P(O|C)P(C)+P(O|D)P(D)
+\\&=\frac{187}{2000}   
+\\&=0.0935
+\end{aligned}
+
+$$
+
+## (2.c)
+We already have $P(O)=\frac{187}{2000}$   
+By the Baye's Theroem,  
+$$
+P(A|O)=\frac{P(O|A)P(A)}{P(O)} =\frac {30}{187}\approx 0.160
+
+$$
+
+# Question 3
