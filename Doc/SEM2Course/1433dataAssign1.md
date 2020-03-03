@@ -1,4 +1,5 @@
 # <div align=middle>**Assignment 1**<div>
+# 概率函数的大P小p得区分一下（Q1，Q2）
 # Question 1
 ## (1.a)
 $$
@@ -130,3 +131,39 @@ P(A|O)=\frac{P(O|A)P(A)}{P(O)} =\frac {30}{187}\approx 0.160
 $$
 
 # Question 3
+## (3.a)
+Proof Markov Inequality for continuous random variable:  
+for any $X\ge 0, \epsilon \gt 0,$
+$$
+   E(X)={\int ^\infty_0 Xp(X) dX} \ge {\int ^\infty_\epsilon Xp(X) dX} \ge {\epsilon\int ^\infty_\epsilon p(X) dX} \ge \epsilon P(X \ge \epsilon)
+$$
+So we have $P(X \ge \epsilon) \le \frac{E(X)}{\epsilon}$
+
+## (3.b) 
+Using Chebyshev's Inequality, we can derive
+$$
+P(|X-65| \ge 10) \le \frac{\sigma ^2}{\epsilon ^2}=\frac14
+$$
+Since $\int_0^\infty  P(X) dX = 1$,  
+$$
+P(55\le X\le 75) = 1-P(|X-65| \ge 10)\ge \frac34
+$$
+## (3.c)
+Let $\bar X$ denotes the expectation of our sample, then we have
+$$
+\mu_{\bar X} = \mu = 65,\sigma^2_{\bar X} =\frac{\sigma^2}{n}
+$$ 
+Then,
+$$
+\frac{\bar X - \mu_{\bar X}}{\frac{\sigma_{\bar X}}{n}} approximately\space follows N(0,1)
+$$
+If $P(60 \le \bar X \le 70)\ge 0.8$,
+Then we have equation
+$$
+{\frac{70-\mu_{\bar X}}{\frac{\sigma_{\bar X}}{n}} \ge Y} \tag{1}
+$$
+Where $P(X\ge Y) =0.90$ for a standard normal distribution.  
+It can be obtained by checking the table that $Y=1.28$,  
+By $(1)$, we can get $N \ge 1.6384$.    
+
+**Thus at least $2$ people whould have to be sampled to satisfy the requirement.**
