@@ -33,7 +33,8 @@ int main(int argc, char const *argv[])
     }
 
     delta = b * b - 4 * a * c;
-
+    cout.setf(ios::showpoint);
+    cout.precision(3);
     if (delta < 0)
         cout << "No real root";
     else if (delta == 0)
