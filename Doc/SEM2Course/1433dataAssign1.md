@@ -27,12 +27,12 @@ then, $P(X=2)=\frac {\binom 5 1 \binom 2 1 +\binom3 1 \binom 3 1 +\binom 3 1 \bi
 3. for $P(X=3)$, it excludes $X=1 orX=2$, so first draw cannot be (10), and the second draw cannot be (1,10) (5,5) (5,10).  
     The outcome should be $S=\{(1,1,10),(1,5,5),(1,5,10),(5,1,5),(5,1,10)\}$  
 
-then,$P(X=3)=\frac{\binom{5}{1}\binom{5}{1}\binom{2}{1}+\binom{5}{1}\binom{3}{1}\binom{2}{1}+\binom{5}{1}\binom{3}{1}\binom{3}{1}+\binom{3}{1}\binom{5}{1}\binom{3}{1}+\binom{3}{1}\binom{5}{1}\binom{2}{1}} {\binom{5}{1}\binom{8}{1}\binom{10}{1}+\binom{3}{1}\binom{5}{1}\binom{10}{1}}=\frac{4}{11}$
+then, $P(X=3)=\frac{\binom{5}{1}\binom{5}{1}\binom{2}{1}+\binom{5}{1}\binom{3}{1}\binom{2}{1}+\binom{5}{1}\binom{3}{1}\binom{3}{1}+\binom{3}{1}\binom{5}{1}\binom{3}{1}+\binom{3}{1}\binom{5}{1}\binom{2}{1}} {\binom{5}{1}\binom{8}{1}\binom{10}{1}+\binom{3}{1}\binom{5}{1}\binom{10}{1}}=\frac{4}{11}$
 
-So,we have $P(x\le 3)=\frac15+\frac{5}{16}+\frac{4}{11}=\frac{771}{880} \approx 0.877$
+So, we have $P(X\le 3)=\frac15+\frac{5}{16}+\frac{4}{11}=\frac{771}{880} \approx 0.877$
 
 ## (1.d) 
-they are dependent.  
+they are **not independent**.  
 Especially, suppose we draw 10-dollar coin at first, then we will have $X=1$ and $Y=10$.  
 $p(X=1)=\frac 1 5$  
 
@@ -58,7 +58,7 @@ We have
 | $p(Y^2)$ | $\frac{8889}{25600}$ | $\frac{623}{3200}$ | $\frac{767}{6400}$ | $\frac{911}{12800}$ | $\frac{211}{5120}$ | $\frac{53}{800}$ | $\frac{101}{1600}$ | $\frac{149}{3200}$ | $\frac{197}{6400}$ | $\frac{49}{2560}$ |
 $$E[Y^2]= \frac{100511}{640}$$
 $$
-\sigma(Y) = \sqrt{E[Y^2]-(E[Y])^2}=\frac{4633}{32}
+\sigma(Y) = \sqrt{E[Y^2]-(E[Y])^2}=\frac{\sqrt{2688839}}{640}\approx2.562
 $$
 
 ## (1.f)
@@ -71,25 +71,25 @@ $$
 E[X]=\sum{X·P(X)}=\frac{7851}{2560}
 $$
 
-|  Y,X  |     1     |        2        |        3        |        4         |        5         |        6        |        7        |        8         |        9         |        10        |
-| :---: | :-------: | :-------------: | :-------------: | :--------------: | :--------------: | :-------------: | :-------------: | :--------------: | :--------------: | :--------------: |
-|  10   | $\frac15$ | $\frac{9}{100}$ |                 |                  |                  | $\frac{9}{160}$ |                 |                  |                  | $\frac{1}{1024}$ |
-|  11   |           |  $\frac1{10}$   | $\frac{9}{100}$ |                  |                  |                 | $\frac{3}{640}$ |                  |                  |                  |
-|  12   |           |                 |  $\frac1{20}$   | $\frac{27}{400}$ |                  |                 |                 | $\frac{3}{1280}$ |                  |                  |
-|  13   |           |                 |                 |   $\frac1{40}$   | $\frac{27}{400}$ |                 |                 |                  | $\frac{3}{2560}$ |                  |
-|  14   |           |                 |                 |                  |   $\frac1{80}$   | $\frac{9}{320}$ |                 |                  |                  | $\frac{3}{5120}$ |
-|  15   |           | $\frac{3}{50}$  |                 |                  |                  | $\frac{1}{160}$ |                 |                  |                  |                  |
-|  16   |           |                 | $\frac{3}{50}$  |                  |                  |                 | $\frac{1}{320}$ |                  |                  |                  |
-|  17   |           |                 |                 | $\frac{9}{200}$  |                  |                 |                 | $\frac{1}{640}$  |                  |                  |
-|  18   |           |                 |                 |                  | $\frac{3}{100}$  |                 |                 |                  | $\frac{1}{1280}$ |                  |
-|  19   |           |                 |                 |                  |                  | $\frac{3}{160}$ |                 |                  |                  | $\frac{1}{2560}$ |
-
+|  Y,X  |     1     |        2        |        3        |        4         |        5         |        6        |        7        |        8         |        9         |        10        | P(Y=i) |
+| :---: | :-------: | :-------------: | :-------------: | :--------------: | :--------------: | :-------------: | :-------------: | :--------------: | :--------------: | :--------------: | :----: |
+|  10   | $\frac15$ | $\frac{9}{100}$ |                 |                  |                  | $\frac{9}{160}$ |                 |                  |                  | $\frac{1}{1024}$ |        |
+|  11   |           |  $\frac1{10}$   | $\frac{9}{100}$ |                  |                  |                 | $\frac{3}{640}$ |                  |                  |                  |        |
+|  12   |           |                 |  $\frac1{20}$   | $\frac{27}{400}$ |                  |                 |                 | $\frac{3}{1280}$ |                  |                  |        |
+|  13   |           |                 |                 |   $\frac1{40}$   | $\frac{9}{200}$ |                 |                 |                  | $\frac{3}{2560}$ |                  |        |
+|  14   |           |                 |                 |                  |   $\frac1{80}$   | $\frac{9}{320}$ |                 |                  |                  | $\frac{3}{5120}$ |        |
+|  15   |           | $\frac{3}{50}$  |                 |                  |                  | $\frac{1}{160}$ |                 |                  |                  |                  |        |
+|  16   |           |                 | $\frac{3}{50}$  |                  |                  |                 | $\frac{1}{320}$ |                  |                  |                  |        |
+|  17   |           |                 |                 | $\frac{9}{200}$  |                  |                 |                 | $\frac{1}{640}$  |                  |                  |        |
+|  18   |           |                 |                 |                  | $\frac{3}{100}$  |                 |                 |                  | $\frac{1}{1280}$ |                  |        |
+|  19   |           |                 |                 |                  |                  | $\frac{3}{160}$ |                 |                  |                  | $\frac{1}{2560}$ |        |
+|P(X=i)|$\frac{1}{5}$|$\frac{1}{4}$|$\frac{1}{5}$|$\frac{11}{80}$|$\frac{}{}$|$\frac{}{}$|$\frac{}{}$|$\frac{}{}$|$\frac{}{}$|$\frac{}{}$|$\frac{}{}$|
 $$
-E(X,Y)=\sum(XY)*P(XY)=\frac{481341}{12800}
+E(X,Y)=\sum(XY)*P(XY)=\frac{100973}{2560}
 \\\space
 
 
-\\Cov(X,Y)=E(X,Y)-E(X)E(Y)=\frac{481341}{12800}-\frac{61638201}{1638400}=-\frac{26553}{1638400} \approx -0.016
+\\Cov(X,Y)=E(X,Y)-E(X)E(Y)=\frac{100973}{2560}-\frac{61638201}{1638400}=
 $$
 
 # Question2
@@ -176,7 +176,7 @@ By $(1)$, we can get $N \ge 1.6384$.
 **Thus, at least $2$ people whould have to be sampled to satisfy the requirement.**
 ## (3.d)
 By the Law of Large Number and Central Limit Theorem,  
-$\frac{\bar X-\mu}{\frac{\sigma}{\sqrt{n}}}$approximately follows $N(0,1)$ (for large n)
+$\frac{\bar X-\mu}{\frac{\sigma}{\sqrt{n}}}$approximately follows $N(0,1)$ 
 
 Then
 $$
@@ -190,3 +190,10 @@ $$
 $$
 
 ## (3.e)
+
+We have $\bar{X}=68,\sigma=5$  
+Null hypothesis $H_0:\mu \lt 65$  
+Then p-value:
+$P(\bar{X}\ge68)=P(\frac{\bar{X}-\mu}{\frac{\sigma}{\sqrt{n}}}\ge1.8)=\phi(-1.8)=0.03593$  
+So we will reject $H_0$ at level of significance $0.1$  
+we will also reject $H_0$ at level of significance $0.05$
