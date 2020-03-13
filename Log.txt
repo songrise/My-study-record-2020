@@ -275,10 +275,5 @@ after a week of ... Anyway, I hope so.
 
 CSAPP 看了memory hierachy 视频
 英语40
-#######################
-2020-3-13
-
-今天写写CSAPP的data lab
-搞了个linux子系统
 
 
