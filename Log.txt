@@ -277,3 +277,7 @@ CSAPP 看了memory hierachy 视频
 英语40
 
 
+######################
+2020-3-13
+准备写一些csappLab
+装了个linux子系统，装了个git bush，更加方便版本管理。
