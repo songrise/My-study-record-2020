@@ -282,4 +282,3 @@ CSAPP 看了memory hierachy 视频
 准备写一些csappLab
 装了个linux子系统，装了个git bush，更加方便版本管理。同时开始尝试git+VSCODE
 整合进行版本管理同步(这样更Geek些？)
-这个消息应该会消失
