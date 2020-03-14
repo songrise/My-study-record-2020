@@ -25,5 +25,7 @@ int main(int argc, char const *argv[])
         printf("6Y");
     printf("\ntest !\n");
     printf("%d", !!0x89);
+    printf("\ntest xor\n");
+    printf("%x", 0xffc00000 ^ 0x80000000);
     return 0;
 }

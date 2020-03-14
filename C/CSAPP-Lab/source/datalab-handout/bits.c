@@ -261,7 +261,7 @@ int isPositive(int x)
   // 0 and positive number share same MSB '0', which makes it hard to indentify by (just checking) MSB.
   // Also it is improper to add or subtract a constant since it may overflow.
   // So the key is to have a "mapping algorithm" to let 0 and neg follow a same MSB representation.
-  // Error: There is no corresponding positive integer for Tmin.
+  // Error: There is *no corresponding positive integer* for Tmin, making it hard to map.
   // since == is not allowed, we can use x^y to (bitwise) test if x == y.
   // so,the value of !x^y should be 1 if x==y and 0 if x!=y.
   return !(x >> 31) & (!!(x ^ 0));
@@ -301,7 +301,10 @@ int ilog2(int x)
  */
 unsigned float_neg(unsigned uf)
 {
-  return 2;
+  unsigned expMask = 0x7f800000;
+  if (!(!(((uf & expMask)) ^ expMask) && (uf & 0x007fffff))) //if (uf != NaN)
+    uf ^= 0x80000000;
+  return uf;
 }
 /* 
  * float_i2f - Return bit-level equivalent of expression (float) x
