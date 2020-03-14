@@ -168,7 +168,8 @@ int getByte(int x, int n)
  */
 int logicalShift(int x, int n)
 {
-  return 2;
+  // assume that integer be 32 bits
+  return (x >> n) & (0x1 << (32 - n));
 }
 /*
  * bitCount - returns count of number of 1's in word
@@ -179,6 +180,7 @@ int logicalShift(int x, int n)
  */
 int bitCount(int x)
 {
+  // control flow is not allowed.. So I am a bit confused how to solve this
   return 2;
 }
 /* 
@@ -190,7 +192,13 @@ int bitCount(int x)
  */
 int bang(int x)
 {
-  return 2;
+  /* "!" should be logical not while "~" is bitwise not.
+  an interesting fact for 2's complement is that to get 
+  negative value of num, just bitwise not and then add 1.
+  I guess that's why there is no '-' op in legal ops.
+  */
+  // ref:https://zhuanlan.zhihu.com/p/28335741
+  return (~((x | ~x + 1) >> 31)) & 1;
 }
 /* 
  * tmin - return minimum two's complement integer 
@@ -200,7 +208,8 @@ int bang(int x)
  */
 int tmin(void)
 {
-  return 2;
+
+  return 0x1 << 31;
 }
 /* 
  * fitsBits - return 1 if x can be represented as an 
@@ -225,7 +234,7 @@ int fitsBits(int x, int n)
  */
 int divpwr2(int x, int n)
 {
-  return 2;
+  return;
 }
 /* 
  * negate - return -x 
@@ -236,7 +245,7 @@ int divpwr2(int x, int n)
  */
 int negate(int x)
 {
-  return 2;
+  return ~x + 1;
 }
 /* 
  * isPositive - return 1 if x > 0, return 0 otherwise 
@@ -247,7 +256,11 @@ int negate(int x)
  */
 int isPositive(int x)
 {
-  return 2;
+  // ‘1’ is mask
+  // 0 and positive number share same MSB '0', which makes it hard to indentify by (just checking) MSB.
+  // Also it is improper to add or subtract a constant since it may overflow.
+  // So the key is to have a "mapping algorithm" to let 0 and neg fllow a same MSB representation.
+  return ((~x + 1) >> 31) & 1;
 }
 /* 
  * isLessOrEqual - if x <= y  then return 1, else return 0 
