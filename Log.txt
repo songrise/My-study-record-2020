@@ -1,10 +1,10 @@
 2019-12-11 to 2019-12-30.
-finishied major part of C primer Plus.
-(excluding File I-O and Standard Libary)
+finished major part of C primer Plus.
+(excluding File I-O and Standard Library)
 ############################
 2019-12-31 
 
-start learing algorithms (using Data Structure and Algorithms Analysis in C).
+start learning algorithms (using Data Structure and Algorithms Analysis in C).
 
 ############################
 2019-12-31 to 2020-1-3
@@ -112,7 +112,7 @@ SEM2 第一天
 #########################
 2020-2-13
 
-今后的log 会 more detailed and structred, 这样对复习也有好处。
+今后的log 会 more detailed and structured, 这样对复习也有好处。
 C++：目前看到第四章，今天把书换成了英文版。今天把string类看完了，string类作为c++新特性为字符串的处理提供了更简便的方法
      同时学习了 cin.get() 与getline()方法。 (方法在此处不是一个专业词汇）
      
@@ -217,7 +217,7 @@ CSAPP:看完了第六章，之后暂时停两天CSAPP
 ########################
 2020-2-26 Wed
 
-CSAPP：看了第五章(Optimazing Performance) 的视频.
+CSAPP：看了第五章(Optimizing Performance) 的视频.
 英语： 看了几篇文章。
 #######################
 2020-2-27 Tur
@@ -270,10 +270,10 @@ u1s1，最近进度有点慢。
 2020-3-6
 
 Despite external drawbacks, I am now able strike a balance between studying
-and other affirs. It is (at least) a good sign that i am going back to track aging
+and other affairs. It is (at least) a good sign that i am going back to track aging
 after a week of ... Anyway, I hope so.
 
-CSAPP 看了memory hierachy 视频
+CSAPP 看了memory hierarchy 视频
 英语40
 
 
@@ -284,3 +284,4 @@ CSAPP 看了memory hierachy 视频
 不小心改了些文件还没法ctrl+Z,于是探索了下git版本回溯的功能，于是
 更加方便版本管理，开始尝试使用git+VSCODE整合进行版本管理同步(这样更Geek些？)
 确实nb
+######################
