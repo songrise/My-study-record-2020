@@ -21,6 +21,9 @@ int main(int argc, char const *argv[])
         printf("4Y");
     if (isPositive(0xffffffff))
         printf("5Y");
-
+    if (isPositive(0x80000000))
+        printf("6Y");
+    printf("\ntest !\n");
+    printf("%d", !!0x89);
     return 0;
 }

@@ -169,7 +169,8 @@ int getByte(int x, int n)
 int logicalShift(int x, int n)
 {
   // assume that integer be 32 bits
-  return (x >> n) & (0x1 << (32 - n));
+  // return (x >> n) & (0x1 << (32 + n));
+  return 2;
 }
 /*
  * bitCount - returns count of number of 1's in word
@@ -198,7 +199,7 @@ int bang(int x)
   I guess that's why there is no '-' op in legal ops.
   */
   // ref:https://zhuanlan.zhihu.com/p/28335741
-  return (~((x | ~x + 1) >> 31)) & 1;
+  return (~((x | (~x + 1)) >> 31)) & 1;
 }
 /* 
  * tmin - return minimum two's complement integer 
@@ -234,7 +235,7 @@ int fitsBits(int x, int n)
  */
 int divpwr2(int x, int n)
 {
-  return;
+  return 2;
 }
 /* 
  * negate - return -x 
@@ -259,8 +260,11 @@ int isPositive(int x)
   // ‘1’ is mask
   // 0 and positive number share same MSB '0', which makes it hard to indentify by (just checking) MSB.
   // Also it is improper to add or subtract a constant since it may overflow.
-  // So the key is to have a "mapping algorithm" to let 0 and neg fllow a same MSB representation.
-  return ((~x + 1) >> 31) & 1;
+  // So the key is to have a "mapping algorithm" to let 0 and neg follow a same MSB representation.
+  // Error: There is no corresponding positive integer for Tmin.
+  // since == is not allowed, we can use x^y to (bitwise) test if x == y.
+  // so,the value of !x^y should be 1 if x==y and 0 if x!=y.
+  return !(x >> 31) & (!!(x ^ 0));
 }
 /* 
  * isLessOrEqual - if x <= y  then return 1, else return 0 

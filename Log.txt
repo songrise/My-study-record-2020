@@ -285,3 +285,10 @@ CSAPP 看了memory hierarchy 视频
 更加方便版本管理，开始尝试使用git+VSCODE整合进行版本管理同步(这样更Geek些？)
 确实nb
 ######################
+2020-3-14
+搞了估计加起来两三个小时，终于可以用CSAPP lab的评分了
+作为side-effects，搞了个linux子系统（Ubuntu），并且配了下环境（gcc）。
+安了git，学了些指令。
+第一次在Stack OverFlow上搜问题。Stack overflow还真好用，快速解决问题
+(还给VSCODE换了个Onedark主题，安了些插件)
+######################

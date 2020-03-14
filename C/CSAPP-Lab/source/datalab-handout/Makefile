@@ -1,8 +1,9 @@
 #
 # Makefile that builds btest and other helper programs for the CS:APP data lab
+# changed -m32 to -m64 to fit wsl settings
 # 
 CC = gcc
-CFLAGS = -O -Wall -m32
+CFLAGS = -O -Wall -m64
 LIBS = -lm
 
 all: btest fshow ishow
