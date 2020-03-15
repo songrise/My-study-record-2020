@@ -295,3 +295,6 @@ CSAPP 看了memory hierarchy 视频
 CSAPP: 做了几道data Lab题
 做了3道leetcode题
 ######################
+2020-3-15
+今天又搞了一会儿git, clone了一些库来学习
+顺便配置了下vscode工作区
