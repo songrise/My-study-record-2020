@@ -21,8 +21,8 @@ bool isPowerOfTwo2(int n)
 
     return (!(n >> 1));
 }
-//This should be the best
-bool isPowerOfTwo23(int n)
+//This should be the best version.
+bool isPowerOfTwo3(int n)
 {
     if (n > 0)
     {
