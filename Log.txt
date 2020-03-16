@@ -278,14 +278,14 @@ CSAPP 看了memory hierarchy 视频
 
 
 ######################
-2020-3-13
+2020-3-13 Fri
 准备写一些csappLab
 装了个linux子系统，装了个git bush，
 不小心改了些文件还没法ctrl+Z,于是探索了下git版本回溯的功能，于是
 更加方便版本管理，开始尝试使用git+VSCODE整合进行版本管理同步(这样更Geek些？)
 确实nb
 ######################
-2020-3-14
+2020-3-14 Sat
 搞了估计加起来两三个小时，终于可以用CSAPP lab的评分了
 作为side-effects，搞了个linux子系统（Ubuntu），并且配了下环境（gcc）。
 安了git，学了些指令。
@@ -295,6 +295,13 @@ CSAPP 看了memory hierarchy 视频
 CSAPP: 做了几道data Lab题
 做了3道leetcode题
 ######################
-2020-3-15
+2020-3-15 Sun
 今天又搞了一会儿git, clone了一些库来学习
 顺便配置了下vscode工作区
+写了些leetcode
+######################
+2020-3-16 Mon
+写了些leetcode
+英语：复习了一些以前单词
+C++：看了会CPPPP（指针，new，delete关键字）
+、
