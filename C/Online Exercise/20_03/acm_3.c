@@ -15,19 +15,17 @@ int main(int argc, char const *argv[])
 int *getInput(int caseNumber)
 {
     //get input and store in a one-dimension array.
-    int TotalInput = 4 * caseNumber;
     int *Allcases = malloc(sizeof(int) * 4 * caseNumber);
-    for (int i = 0; i < TotalInput; i++)
+    for (int i = 0; i < caseNumber; i++)
     {
-        scanf("%d", Allcases);
-        Allcases++; //increment to point to next place
+        scanf("%d%d%d%d", Allcases[0 + 4 * i], Allcases[1 + 4 * i], Allcases[2 + 4 * i], Allcases[3 + 4 * i]);
     }
     return Allcases;
 }
 
 void solver(int *Allcases, int caseNumber)
 {
-    int *ans = malloc(sizeof(int) * caseNumber);
+    double *ans = malloc(sizeof(double) * caseNumber);
     int i;
     for (i = 0; i < caseNumber; i++) //read one case
     {
@@ -49,11 +47,15 @@ void solver(int *Allcases, int caseNumber)
                 totalTime += reachTime;
             }
         }
-        *ans++ = totalTime;
+
+        ans[i] = totalTime;
         Allcases += 4; //point to next case
     }
+
     for (i = 0; i < caseNumber; i++)
     {
         printf("Case #%d: %.3f", i + 1, ans[i]);
     }
+    free(ans);
+    free(Allcases);
 }
