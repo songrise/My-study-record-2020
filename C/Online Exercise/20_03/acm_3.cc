@@ -15,7 +15,7 @@ int main(int argc, char const *argv[])
 int *getInput(int caseNumber)
 {
     //get input and store in a one-dimension array.
-    int *Allcases = malloc(sizeof(int) * 4 * caseNumber);
+    int *Allcases = (int *)malloc(sizeof(int) * 4 * caseNumber);
     for (int i = 0; i < caseNumber; i++)
     {
         scanf("%d%d%d%d", Allcases[0 + 4 * i], Allcases[1 + 4 * i], Allcases[2 + 4 * i], Allcases[3 + 4 * i]);
@@ -25,7 +25,7 @@ int *getInput(int caseNumber)
 
 void solver(int *Allcases, int caseNumber)
 {
-    double *ans = malloc(sizeof(double) * caseNumber);
+    double *ans = (double *)malloc(sizeof(double) * caseNumber);
     int i;
     for (i = 0; i < caseNumber; i++) //read one case
     {
