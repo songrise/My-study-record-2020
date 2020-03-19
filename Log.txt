@@ -304,4 +304,13 @@ CSAPP: 做了几道data Lab题
 写了些leetcode
 英语：复习了一些以前单词
 C++：看了会CPPPP（指针，new，delete关键字）
-、
+######################
+2020-3-17
+写了写OJ题
+学了会儿cpp
+写clc作业
+######################
+2020-3-18 Wed
+把c++primer plus 第四章看完了，新学了new，delete，array，vector.
+
+######################
