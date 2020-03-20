@@ -28,7 +28,7 @@ int main(int argc, char const *argv[])
         inFile >> value; // get next value
     }
     //bad input here
-    
+
     if (inFile.eof())
         cout << "End of file reached.\n";
     else if (inFile.fail())
