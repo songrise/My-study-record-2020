@@ -280,7 +280,7 @@ CSAPP 看了memory hierarchy 视频
 ######################
 2020-3-13 Fri
 
-准备写一些csappLab
+准备写一些csapp Lab
 装了个linux子系统，装了个git bush，
 不小心改了些文件还没法ctrl+Z,于是探索了下git版本回溯的功能，于是
 更加方便版本管理，开始尝试使用git+VSCODE整合进行版本管理同步(这样更Geek些？)
