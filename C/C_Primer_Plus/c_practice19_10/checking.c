@@ -11,9 +11,9 @@ double sum_squares(long a, long b);
 int main(void)
 {
     const long MIN = -10000000L;
-    // 范围的下限 
-    const long MAX = + 10000000L;
-    // 范围的上限 
+    // 范围的下限
+    const long MAX = +10000000L;
+    // 范围的上限
     long start;
     // 用户指定的范围最小值
     long stop;
@@ -54,7 +54,7 @@ long get_long(void)
 {
     long input;
     char ch;
-    while (scanf("% ld", &input) != 1)//1:输入 2:判断 
+    while (scanf("% ld", &input) != 1) //1:输入 2:判断
     {
         while ((ch = getchar()) != '\n')
             putchar(ch); // 处理 错误 输入
@@ -69,7 +69,7 @@ double sum_squares(long a, long b)
     double total = 0;
     long i;
     for (i = a; i <= b; i++)
-        total += (double)i * (double)i;  //显式cast
+        total += (double)i * (double)i; //显式cast
     return total;
 }
 bool bad_limits(long begin, long end, long low, long high)
