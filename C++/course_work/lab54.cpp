@@ -1,29 +1,38 @@
 /*
-Limitation1: the use of global variable "first"
-We sholud avoid the use of global variable,however
-it turns out that we can save uneccessary parameter
-by using this variable.
+I believe all cases have been handled, to test this, try following cases:
 
-Limitation2: Case conversion
-It seems that sometimes user may type lower case alphas,
-for example 'o' rather than 'O'.
+#
+Please enter O or X: f
+You can only choose O or X
+#
 
-I sholud be more considerate to convert the letter 
-to upper case for some 'careless' users to promote 
-their experience.
+#
+Please enter O or X: O
+Which cell you want to place: 10
+Error: Invalid cell
+#
+
+#
+Please enter O or X:O
+Which cell you want to place: 1
+Please enter O or X:X
+Which cell you want to place: 1
+Error: The cell is already occupied!
+#
+
 */
 
-#include <stdio.h>
+#include <stdio.h> //provide prototype for printf()
 #include <iostream>
-#include <stdlib.h>
+#include <stdlib.h> //provide prototype for exit()
 #define BOARDTYPE char
+
 using namespace std;
 
 bool getAction(BOARDTYPE *, int);
-void drawUpdateTTT(BOARDTYPE *);
-BOARDTYPE nextStep(BOARDTYPE *);
-
-static char first;
+void drawUpdateTTT(const BOARDTYPE *);
+BOARDTYPE nextStep(const BOARDTYPE *);
+static char first; //first player is either O or X.
 
 int main(int argc, char const *argv[])
 {
@@ -38,11 +47,11 @@ int main(int argc, char const *argv[])
         if (getAction(board, i + 1))
         {
             drawUpdateTTT(board);
-            printf("\nThis is step %d, there are %d more steps\n", i + 1, 8 - i);
+            printf("This is step %d, there are %d more steps\n", i + 1, 8 - i);
         }
         else
         {
-            printf("Unexpected error!\n");
+            printf("Unexpected error!");
             exit(-1);
         }
     }
@@ -52,8 +61,10 @@ int main(int argc, char const *argv[])
     return 0;
 }
 
-void drawUpdateTTT(BOARDTYPE *board)
+void drawUpdateTTT(const BOARDTYPE *board)
 {
+    //formatted printf() is easier to use for this task.
+    //However, I can use cout to rewrite it if necessary.
     int i;
     for (i = 0; i < 6; i += 3)
     {
@@ -68,12 +79,11 @@ bool getAction(BOARDTYPE *board, int turn)
     char symbol;
 
     int location;
-    bool T = false; //T is used for return the the executive status of this procedure
+    bool T = false; //return status of this funcion
     while (1)
     {
         if (!cin) //flush buffer
         {
-            cin.clear();
             cin.sync();
         }
 
@@ -82,11 +92,13 @@ bool getAction(BOARDTYPE *board, int turn)
         if (symbol != 'O' && symbol != 'X')
         {
             printf("You can only choose O or X\n");
+            cin.sync();
             continue;
         }
 
         else if (turn == 1)
             first = symbol;
+
         else if (symbol != nextStep(board)) //Wrong player
         {
             printf("Error: it is %c turn\n", nextStep(board));
@@ -102,7 +114,7 @@ bool getAction(BOARDTYPE *board, int turn)
             printf("Error: Invalid cell\n");
             continue;
         }
-        else if (board[location - 1] != ' ') //already occupied
+        else if (board[location - 1] != ' ') //selected place is already occupied
         {
             printf("Error: The cell is already occupied!\n");
             continue;
@@ -117,11 +129,12 @@ bool getAction(BOARDTYPE *board, int turn)
     return T;
 }
 
-BOARDTYPE nextStep(BOARDTYPE *board)
+BOARDTYPE nextStep(const BOARDTYPE *board)
 {
     //This fuction determines the next symbol to be filled
     int Otimes = 0, Xtimes = 0;
-    for (int i = 0; i < 9; i++)
+
+    for (int i = 0; i < 9; i++) //travese all cells
     {
         if (board[i] == 'O')
             Otimes++;
