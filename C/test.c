@@ -1,12 +1,21 @@
-int F(int *A, int L)
-{
-    int temp = A[0];
-    for (int i = 0; i < L; i++)
-        if (A[i] > temp)
-            temp = A[i];
-    return temp;
-}
+#include <stdio.h>
 
-int main()
+int main(int argc, char const *argv[])
 {
+    float temp, max, min;
+    scanf("%f", &temp);
+    max = temp;
+    min = temp;
+    while (temp >= 0)
+    {
+        if (temp > max)
+            max = temp;
+        else if (temp < min)
+        {
+            min = temp;
+        }
+        scanf("%f", &temp);
+    }
+    printf("max=%f,\nmin=%f.", max, min);
+    return 0;
 }
