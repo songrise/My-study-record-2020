@@ -18,16 +18,19 @@
       (cons (op (car seq))
       (map op (cdr seq)))))
 
-(define (accumulate  op init seq) ;return accumulated sequence concatenated by given op
+(define (accumulate op init seq) ;return accumulated sequence concatenated by given op
   (if (null? seq)
       init
-      (op (car seq (cdr seq)))))
+      (op (car seq) (accumulate op init (cdr seq)))))
 
 ; end of sequence packet
 
-(define (square x) (* x x))
+(define (count-leaves tree)
+  (accumulate + 0 (map (lambda (x) 1) (enumerate_tree tree))))
 
-(define (sum_odd_squares tree)
-  (accumulate + 0 (map square (filter odd? tree))))
 
-(sum_odd_squares (list(list 1 3) (list 7 2)))
+;test
+(define x (list (list 2 3) (list 1 3)))
+
+(count-leaves x)
+(count-leaves (list x x))
