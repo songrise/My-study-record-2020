@@ -6,6 +6,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <ctype.h>
 /*Macros*/
 #define MEMSIZE 16
 #define RIGSIZE 8
@@ -13,7 +14,7 @@
 #define MAXINS 100
 #define LINESIZE 50 //max length of an instruction line
 #define OPSIZE 20
-#define PTRMASK 0xf // mask for 8-bit pointers
+#define PTRMASK 0xf // mask for 4-bit pointers
 
 /*End of Macros*/
 
@@ -60,10 +61,14 @@ void execute(struct instruction **ins);
 int initialize(void);
 int parseline(struct instruction *);
 int fetch(char *instructionName);
+int *decode(struct instruction *ins);
 int run(int operandNo, struct instruction *ins);
-void Iaddq(struct instruction *ins);
+//'I' for instruction, not instant
+void I_addq(struct instruction *ins);
 void show()
 {
+    printf("\n");
+
     for (size_t i = 0; i < 8; i++)
     {
         printf("Reg%d:%d ", i, reg[i]);
@@ -79,10 +84,21 @@ void show()
 
 int main(int argc, char const *argv[])
 {
-    struct instruction test = {"halt", "$1", "r2", "L1"};
-    struct instruction *ptrTest[1];
-    ptrTest[0] = &test;
+    reg[1] = 4;
+    reg[2] = 5;
+    struct instruction test1 =
+        {
+            "addq",
+            "%r1",
+            "%r2",
+            "L1"};
+    struct instruction test2 = {"halt", "$1", "r2", "L1"};
+    struct instruction *ptrTest[2];
+    ptrTest[0] = &test1;
+    ptrTest[1] = &test2;
     execute(ptrTest);
+
+    show();
 
     return 0;
 }
@@ -108,7 +124,7 @@ void execute(struct instruction **ins)
             printf("\nUnknown instruction encountered. program aborted.\n");
             exit(-1);
         }
-        else
+        else ///maybe need update PC here
         {
             if ((executionStatus = run(op, ins[i])) == -1)
             {
@@ -134,7 +150,7 @@ int run(int operandNo, struct instruction *ins)
         exit_status = 0;
         break;
     case addq:
-        Iaddq(ins);
+        I_addq(ins);
 
         break;
     case subq:
@@ -220,7 +236,48 @@ int parseline(struct instruction *i)
 {
     return 1;
 }
-
-void Iaddq(struct instruction *ins)
+int *decode(struct instruction *ins)
 {
+    // return an array in form of integers
+    int *op = malloc(sizeof(int) * 2); //operands
+    for (size_t i = 0; i < 2; i++)
+    {
+        char *opMember = i == 0 ? ins->operand1 : ins->operand2;
+        char firstAlpha = opMember[0];
+
+        if (firstAlpha == '%') //registers
+        {
+            op[i] = atoi(opMember + 2); //e.g. %r3
+        }
+        else if ((firstAlpha) == '$') //instant number
+        {
+            op[i] = atoi(opMember + 1);
+        }
+        else if (isdigit(firstAlpha) || firstAlpha == '-') //memory reference
+        {
+            int j = 0, offset, regNo, regOp, memLocation;
+            char temp[4];
+            while (opMember[j] != '(') //e.g. 16(%r5)
+                j += 1;                //locate j to point to first '('
+            memcpy(temp, opMember, j);
+            temp[j + 1] = '\0';
+            offset = atoi(temp);
+            regNo = (int)(opMember[j + 3]) - 48; //by anscii, reg No. are 0-7
+            regOp = reg[regNo];
+            memLocation = regOp + offset;
+            op[i] = memLocation; //returned op is pointer
+        }
+    }
+    show();
+    printf("\ndecode suc with:op1: %d, op2: %d", op[0], op[1]);
+    return op;
+}
+
+void I_addq(struct instruction *ins)
+{
+
+    int *operand = decode(ins);
+    // execution, write back simulation
+    reg[operand[1]] += reg[operand[0]];
+    free(operand);
 }
