@@ -63,7 +63,7 @@ int parseline(struct instruction *);
 int fetch(char *instructionName);
 int *decode(struct instruction *ins);
 int run(int operandNo, struct instruction *ins);
-void Iaddq(struct instruction *ins);
+void I_addq(struct instruction *ins);
 void show()
 {
     for (size_t i = 0; i < 8; i++)

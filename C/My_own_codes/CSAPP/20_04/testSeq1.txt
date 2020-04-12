@@ -1,0 +1,5 @@
+irmovq $-5, %r0
+irmovq $11, %r1
+L1: addq %r0, %r1
+rmmovq %r0, 0(%r1)
+halt

@@ -52,13 +52,13 @@ static int PC = 0;           //simulate program pointer (simply line No. of inst
 /*function Prototypes*/
 char *readSource(const char *filename);
 struct instruction **parse(char *code);
-void initJumpTable(struct instruction **ins, int LineNum);
-void execute(struct instruction **ins);
+struct instruction *rmvPreceedingSpc(char *ALlins[LINESIZE], int instructionNum);
+void initJumpTable(struct instruction **Allins, int LineNum);
+void execute(struct instruction **Allins);
 int initialize(void);
 int fetch(char *instructionName);
 int *decode(struct instruction *ins);
 int guide(int operandNo, struct instruction *ins);
-void setJumpTable(struct instruction *ins);
 void I_addq(struct instruction *ins);
 void I_subq(struct instruction *ins);
 void I_cmpq(struct instruction *ins);
@@ -83,58 +83,180 @@ void show()
     {
         printf("Mem%d:%d ", i, mem[i]);
     }
+    printf("\n");
+
+    for (size_t i = 0; i < jumpTableIndex + 1; i++)
+    {
+        printf("Label:%s at:%d ", jumpTable[i].label, jumpTable[i].pcLocation);
+    }
+    printf("\n");
     printf("SF:%d ZF:%d OF:%d PC:%d", CC.SF, CC.ZF, CC.OF, PC);
     printf("\n###############################\n");
 }
 
 int main(int argc, char const *argv[])
 {
-    reg[1] = 4;
-    reg[2] = 6;
-    struct instruction test0 =
-        {
-            "irmovq",
-            "$1",
-            "%r3",
-            ""};
-    struct instruction test1 =
-        {
-            "addq",
-            "%r3",
-            "%r1",
-            "L1"};
-    struct instruction test2 =
-        {
-            "cmpq",
-            "%r2",
-            "%r1",
-            ""};
-    struct instruction test3 =
-        {
-            "jl",
-            "L1", // probably I shall handle ':'
-            "",
-            ""};
-    struct instruction test4 =
-        {
-            "halt",
-            "",
-            "",
-            ""};
 
-    struct instruction *ptrTest[5];
-    ptrTest[0] = &test0;
-    ptrTest[1] = &test1;
-    ptrTest[2] = &test2;
-    ptrTest[3] = &test3;
-    ptrTest[4] = &test4;
-    execute(ptrTest);
-
+    char *codeStr = readSource(argv[1]);
+    struct instruction **parsedCode = parse(codeStr);
+    execute(parsedCode);
     show();
 
     return 0;
 }
+char *readSource(const char *filename) //read a file and store it as a string
+{
 
+    FILE *file = fopen(filename, "r");
+    char *code;
+    if ((code = (char *)malloc(sizeof(char) * CODESIZE)) == NULL)
+    {
+        printf("Malloc error when reading .txt file! Program aborted\n");
+        exit(-1);
+    }
+
+    int i = 0;
+    while (!feof(file))
+    {
+        fscanf(file, "%c", &code[i++]);
+    }
+    code[i++] = '\n'; //this will be helpful later
+    code[i] = '\0';
+    fclose(file);
+
+    return code;
+}
+
+struct instruction **parse(char *codeStr) //return an array of instructions
+{
+
+    int i = 0; //index of code
+    int j = 0; // index of line
+    int lineNum = 0;
+    char temp;
+    char instructionArr[MAXINS][LINESIZE]; //an array of instructions in form of string
+    int instructionNum = 1;                //This will be useful latter
+    //initial process, convert in to an array of strings
+    while ((temp = codeStr[i++]) != '\0') //iterate by lines
+    {
+        if (temp == '\n' || temp == '\0') //line terminated, means an instruction terminated
+        {
+            instructionArr[lineNum][j] = '\0';
+            lineNum += 1;
+            j = 0;
+            instructionNum += 1;
+        }
+        else
+        {
+            instructionArr[lineNum][j++] = temp;
+        }
+    }
+    // rmvPreceedingSpc(instructionArr, instructionNum);
+
+    //test
+    for (size_t i = 0; i < lineNum + 1; i++)
+    {
+        printf("%s\n", instructionArr[i]);
+    }
+    //e
+
+    static struct instruction *code[MAXINS]; //maybe bug,  array of pointer to struct instructions.
+
+    for (lineNum = 0; lineNum < instructionNum; lineNum++)
+    {
+        //some instruction takes no operand, so by default its NULL
+        struct instruction *line = malloc(sizeof(struct instruction));
+        //this works, but how to initialize null?
+        strncpy(line->operator, "", OPSIZE);
+        strncpy(line->operand1, "", OPSIZE);
+        strncpy(line->operand2, "", OPSIZE);
+        strncpy(line->label, "", OPSIZE);
+
+        j = 0;             //index of char
+        int memberNum = 0; //No. of members
+
+        int z = 0; //index of array word
+
+        char *word = strtok(instructionArr[lineNum], " ");
+        while (word)
+        {
+            //judge if this instruction has label, (check whether it has a colon)
+            if (word[strlen(word) - 1] == ':')
+            {
+                strncpy(line->label, word, strlen(word) - 1); //colon removed
+                word = strtok(NULL, " ");
+                continue;
+            }
+            //bug here
+            if (memberNum == 0)
+            {
+                strncpy(line->operator, word, OPSIZE);
+            }
+            else if (memberNum == 1)
+            {
+                if (word[strlen(word) - 1] == ',')
+                {
+                    strncpy(line->operand1, word, strlen(word) - 1);
+                }
+                else
+                {
+                    strncpy(line->operand1, word, OPSIZE);
+                }
+            }
+            else if (memberNum == 2)
+            {
+                strncpy(line->operand2, word, OPSIZE);
+            }
+            else
+            {
+                printf("Parse Error. Too many operands! Program Aborted.\n");
+                printf("Last line processed: %s\n", instructionArr[lineNum][j]);
+                exit(-1);
+            }
+            memberNum += 1;
+            word = strtok(NULL, " ");
+        }
+
+        //struct entries is static, so its data exists for the rest of program life
+        code[lineNum] = line;
+        memcpy(code[lineNum], line, sizeof(struct instruction));
+    }
+
+    //free(codeStr); //free code string allocated in readSource()
+    initJumpTable(code, instructionNum);
+
+    for (size_t i = 0; i < 4; i++)
+    {
+        printf("label:%s op:%s, op1:%s, op2:%s\n", code[i]->label, code[i]->operator, code[i]->operand1, code[i]->operand2);
+    }
+
+    return code;
+}
+//some error on pointers returned
+
+//should remove preceeding white space
+//should handle lables.
+//init bug test ok.
+//I shall reconstruct parse (and probably rename it )
+
+void initJumpTable(struct instruction **ins, int LineNum)
+{
+    for (size_t i = 0; i < LineNum; i++)
+    {
+        if (strncmp(ins[i]->label, "", OPSIZE)) //has lable
+        {
+            strncpy(jumpTable[jumpTableIndex].label, ins[i]->label, OPSIZE);
+            jumpTable[jumpTableIndex++].pcLocation = i;
+        }
+    }
+}
+
+struct instruction *rmvPreceedingSpc(char *Allins[LINESIZE], int instructionNum)
+{
+    return NULL;
+}
+
+//execute part
 void execute(struct instruction **ins)
 {
     if (!initialize())
@@ -150,7 +272,6 @@ void execute(struct instruction **ins)
     while (1) // run until explicated "halt"
     {
         int currentPc = PC;
-        setJumpTable(ins[PC]); // should judge if already in table.
 
         if ((op = fetch(ins[PC]->operator)) == -1)
         {
@@ -192,18 +313,6 @@ int initialize(void)
     CC.SF = 0;
     CC.ZF = 0;
     return 1;
-}
-
-void setJumpTable(struct instruction *ins)
-{
-    if (!strncmp(ins->label, "", OPSIZE)) //no label
-        return;
-    else
-    {
-        strncpy(jumpTable[jumpTableIndex].label, ins->label, OPSIZE);
-        jumpTable[jumpTableIndex].pcLocation = PC; //bind current %rip to Label
-        jumpTableIndex += 1;
-    }
 }
 
 int guide(int operandNo, struct instruction *ins)
@@ -390,7 +499,7 @@ void I_cmpq(struct instruction *ins)
 int findDest(char *label)
 {
     int dest = -1;
-    for (size_t i = 0; i < JMPTABLESIZE; i++)
+    for (size_t i = 0; i < jumpTableIndex + 1; i++)
     {
         if (!strncmp(jumpTable[i].label, label, OPSIZE))
         {
