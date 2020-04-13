@@ -1,6 +1,7 @@
 /*
 *By Ruixiang JIANG in 2020/4/11
 * ALL rights reserved
+*Compile in unix systems
 */
 #include <stdio.h>
 #include <stdlib.h>
@@ -83,30 +84,56 @@ int main(int argc, char const *argv[])
         struct instruction **parsedCode = parse(codeStr);
         execute(parsedCode);
         show();
-        free(parsedCode);
         printf("\n");
     }
     return 0;
 }
+// void show()
+// {
+//     printf("%%r0..7: ");
+//     for (size_t i = 0; i < 8; i++)
+//     {
+//         printf("%d ", reg[i]);
+//     }
+//     printf("\nM0..15: ");
+//     for (size_t i = 0; i < 16; i++)
+//     {
+//         printf("%d ", mem[i]);
+//     }
+//     printf("\n");
+// }
 void show()
 {
-    printf("%r0..7: ");
-    for (size_t i = 0; i < 8; i++)
+    printf("\n################Status###############\n");
+    for (int i = 0; i < 8; i++)
     {
-        printf("%d ", reg[i]);
-    }
-    printf("\nM0..15: ");
-    for (size_t i = 0; i < 16; i++)
-    {
-        printf("%d ", mem[i]);
+        printf("Reg%d:%d ", i, reg[i]);
     }
     printf("\n");
-}
+    for (int i = 0; i < 16; i++)
+    {
+        printf("Mem%d:%d ", i, mem[i]);
+    }
+    printf("\n");
 
+    for (int i = 0; i < jumpTableIndex + 1; i++)
+    {
+        printf("Label:%s at:%d ", jumpTable[i].label, jumpTable[i].pcLocation);
+    }
+    printf("\n");
+    printf("SF:%d ZF:%d OF:%d PC:%d", CC.SF, CC.ZF, CC.OF, PC);
+    printf("\n###############################\n");
+}
 char *readSource(const char *filename) //read a file and store it as a string
 {
 
     FILE *file = fopen(filename, "r");
+    if (file == NULL)
+    {
+        printf("file: \"%s\" not found in current directory. Program Aborted.\n", filename);
+        exit(-1);
+    }
+
     char *code;
     if ((code = (char *)malloc(sizeof(char) * CODESIZE)) == NULL)
     {
@@ -133,8 +160,9 @@ struct instruction **parse(char *codeStr) //return an array of instructions
     int lineNum = 0;
     char temp;
     char instructionArr[MAXINS][LINESIZE]; //an array of instructions in form of string
-    int instructionNum = 1;                //This will be useful latter
-    //initial process, convert in to an array of strings
+    int instructionNum = 1;                //Count instructions. This will be useful latter
+
+    /****initial process, convert in to an array of strings******/
     while ((temp = codeStr[i++]) != '\0') //iterate by lines
     {
         if (temp == '\n' || temp == '\0') //line terminated, means an instruction terminated
@@ -153,6 +181,7 @@ struct instruction **parse(char *codeStr) //return an array of instructions
 
     static struct instruction *code[MAXINS]; //maybe bug,  array of pointer to struct instructions.
 
+    /********convert into an array of pointer-to-structures**********/
     for (lineNum = 0; lineNum < instructionNum; lineNum++)
     {
         //some instruction takes no operand, so by default its NULL
@@ -178,7 +207,6 @@ struct instruction **parse(char *codeStr) //return an array of instructions
                 word = strtok(NULL, " ");
                 continue;
             }
-            //bug here
             if (memberNum == 0)
             {
                 strncpy(line->operator, word, OPSIZE);
@@ -213,10 +241,13 @@ struct instruction **parse(char *codeStr) //return an array of instructions
         memcpy(code[lineNum], line, sizeof(struct instruction));
     }
 
-    free(codeStr);                            //free code string allocated in readSource()
+    free(codeStr); //free code string allocated in readSource()
+
+    /********initialize jumpTable********/
+    jumpTableIndex = 0;
     for (size_t i = 0; i < JMPTABLESIZE; i++) //initialize jumpTable
     {
-        strncpy(jumpTable[i].label, "", OPSIZE);
+        strncpy(jumpTable[i].label, "NULL", OPSIZE);
         jumpTable[i].pcLocation = -1;
     }
     initJumpTable(code, instructionNum);
@@ -302,6 +333,7 @@ void execute(struct instruction **ins)
         {
             PC++;
         }
+        show();
     }
 }
 
@@ -309,7 +341,6 @@ int initialize(void)
 {
     //private func of execute. Initialize all registers and memories 0.
     //mem and reg are statiac, so they are by default 0
-    //set condition codes
     for (size_t i = 0; i < MEMSIZE; i++)
     {
         mem[i] = 0;
@@ -319,10 +350,12 @@ int initialize(void)
         reg[i] = 0;
     }
 
+    //set condition codes
     CC.OF = 0;
     CC.SF = 0;
     CC.ZF = 0;
     PC = 0;
+    //jump table are initialized in parse part.
     return 1;
 }
 
@@ -508,7 +541,7 @@ void I_cmpq(struct instruction *ins)
     {
         CC.SF = 0;
     }
-    if (temp > reg[operand[1]])
+    if (temp > reg[operand[1]]) //overflowed
     {
         CC.OF = 1;
     }
@@ -517,23 +550,39 @@ void I_cmpq(struct instruction *ins)
         CC.OF = 0;
     }
 }
-
+//bugs on linux system
 int findDest(char *label)
 {
     int dest = -1;
     char labelCopy[OPSIZE];
     strncpy(labelCopy, label + 1, OPSIZE); //remove "."
 
+    int test;
     for (size_t i = 0; i < jumpTableIndex + 1; i++)
     {
-        if (!strncmp(jumpTable[i].label, labelCopy, OPSIZE))
+        for (size_t j = 1; j < OPSIZE; j++)
         {
-            dest = jumpTable[i].pcLocation;
+
+            if (isspace(jumpTable[i].label[j]) || isspace(labelCopy[j]))
+            {
+                continue;
+            }
+            if (jumpTable[i].label[j] != labelCopy[j])
+            {
+                break;
+            }
+            else
+            {
+                if ((jumpTable[i].label[j] == '\0') && (labelCopy[j] == '\0'))
+                {
+                    dest = jumpTable[i].pcLocation;
+                }
+            }
         }
     }
     if (dest == -1)
     {
-        printf("Error, Unknown Label:\"%s\" Program Aborted.\n", label);
+        printf("Error, Unknown Label: [%s] Program Aborted.\n", labelCopy);
         exit(-1);
     }
 

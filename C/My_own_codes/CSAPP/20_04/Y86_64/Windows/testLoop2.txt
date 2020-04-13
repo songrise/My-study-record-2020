@@ -8,4 +8,3 @@ L1: mrmovq 0(%r2), %r1
     cmpq %r2, %r1
     jl .L1
     halt
-
