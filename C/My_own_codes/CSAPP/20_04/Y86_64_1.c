@@ -52,7 +52,7 @@ static int PC = 0;           //simulate program pointer (simply line No. of inst
 /*function Prototypes*/
 char *readSource(const char *filename);
 struct instruction **parse(char *code);
-struct instruction *rmvPreceedingSpc(char *ALlins[LINESIZE], int instructionNum);
+int rmvPreceedingSpc(char Allines[][LINESIZE], int instructionNum);
 void initJumpTable(struct instruction **Allins, int LineNum);
 void execute(struct instruction **Allins);
 int initialize(void);
@@ -151,7 +151,7 @@ struct instruction **parse(char *codeStr) //return an array of instructions
             instructionArr[lineNum][j++] = temp;
         }
     }
-    // rmvPreceedingSpc(instructionArr, instructionNum);
+    rmvPreceedingSpc(instructionArr, instructionNum);
 
     //test
     for (size_t i = 0; i < lineNum + 1; i++)
@@ -232,6 +232,28 @@ struct instruction **parse(char *codeStr) //return an array of instructions
 
     return code;
 }
+
+int rmvPreceedingSpc(char Allines[][LINESIZE], int instructionNum)
+{
+    //inplace remove preceeding  white space.
+    for (size_t i = 0; i < instructionNum; i++)
+    {
+        char *line = Allines[i];
+        int lineLen = strlen(line);
+        int j = 0;
+        while (j < OPSIZE)
+        {
+            if (isblank(line[j])) //locate to first non-space char.
+                j++;
+            else
+            {
+                break;
+            }
+        }
+        memcpy(Allines[i], line + j, lineLen - j + 1);
+    }
+    return 1;
+}
 //some error on pointers returned
 
 //should remove preceeding white space
@@ -249,11 +271,6 @@ void initJumpTable(struct instruction **ins, int LineNum)
             jumpTable[jumpTableIndex++].pcLocation = i;
         }
     }
-}
-
-struct instruction *rmvPreceedingSpc(char *Allins[LINESIZE], int instructionNum)
-{
-    return NULL;
 }
 
 //execute part

@@ -1,0 +1,6 @@
+    irmovq $-2, %r0
+    irmovq $127, %r1
+    cmpq %r1, %r0
+    jg .L1
+    irmovq $1, %r3
+L1: halt

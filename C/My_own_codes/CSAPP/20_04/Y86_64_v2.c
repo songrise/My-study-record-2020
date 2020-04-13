@@ -2,15 +2,14 @@
 *By Ruixiang JIANG in 2020/4/11
 * ALL rights reserved
 */
-
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 #include <ctype.h>
 
-/*Macros*/
+/*****************Macros**********************/
 #define MEMSIZE 16
-#define RIGSIZE 8
+#define REGSIZE 8
 #define CODESIZE 10000
 #define MAXINS 100
 #define LINESIZE 50 //max length of an instruction line
@@ -18,9 +17,9 @@
 #define JMPTABLESIZE 20
 #define PTRMASK 0xf // mask for 4-bit pointers
 
-/*End of Macros*/
+/****************End of Macros***************/
 
-/*type Alias*/
+/****************type define*****************/
 typedef signed char RegType; // type of registers (signed 8-bits)
 struct instruction
 {
@@ -40,19 +39,21 @@ struct ConditionCodeReg
     int SF;
     int OF;
 };
+/****************End of Types***************/
 
-/*Global Variables*/
+/**************Global Variables************/
 static struct ConditionCodeReg CC;
 static struct jumpTableEntry jumpTable[JMPTABLESIZE];
 static int jumpTableIndex;
 static RegType mem[MEMSIZE]; //simulate main memory
-static RegType reg[RIGSIZE]; //simulate register
+static RegType reg[REGSIZE]; //simulate register
 static int PC = 0;           //simulate program pointer (simply line No. of instructions)
+/****************End of globals***************/
 
-/*function Prototypes*/
+/**********Function Prototypes***************/
 char *readSource(const char *filename);
 struct instruction **parse(char *code);
-struct instruction *rmvPreceedingSpc(char *ALlins[LINESIZE], int instructionNum);
+int rmvPreceedingSpc(char Allines[][LINESIZE], int instructionNum);
 void initJumpTable(struct instruction **Allins, int LineNum);
 void execute(struct instruction **Allins);
 int initialize(void);
@@ -71,6 +72,22 @@ void I_rrmovq(struct instruction *ins);
 void I_irmovq(struct instruction *ins);
 void I_rmmovq(struct instruction *ins);
 void I_mrmovq(struct instruction *ins);
+void show();
+/**********End of Functions ***************/
+
+int main(int argc, char const *argv[])
+{
+    for (size_t i = 1; i < argc; i++)
+    {
+        char *codeStr = readSource(argv[i]);
+        struct instruction **parsedCode = parse(codeStr);
+        execute(parsedCode);
+        show();
+        free(parsedCode);
+        printf("\n");
+    }
+    return 0;
+}
 void show()
 {
     printf("%r0..7: ");
@@ -86,16 +103,6 @@ void show()
     printf("\n");
 }
 
-int main(int argc, char const *argv[])
-{
-
-    char *codeStr = readSource(argv[1]);
-    struct instruction **parsedCode = parse(codeStr);
-    execute(parsedCode);
-    show();
-
-    return 0;
-}
 char *readSource(const char *filename) //read a file and store it as a string
 {
 
@@ -112,8 +119,7 @@ char *readSource(const char *filename) //read a file and store it as a string
     {
         fscanf(file, "%c", &code[i++]);
     }
-    code[i++] = '\n'; //this will be helpful later
-    code[i] = '\0';
+    strncat(code, " \n", CODESIZE); //Helpful for parse.
     fclose(file);
 
     return code;
@@ -143,7 +149,7 @@ struct instruction **parse(char *codeStr) //return an array of instructions
             instructionArr[lineNum][j++] = temp;
         }
     }
-    // rmvPreceedingSpc(instructionArr, instructionNum);
+    rmvPreceedingSpc(instructionArr, instructionNum);
 
     static struct instruction *code[MAXINS]; //maybe bug,  array of pointer to struct instructions.
 
@@ -195,7 +201,7 @@ struct instruction **parse(char *codeStr) //return an array of instructions
             else
             {
                 printf("Parse Error. Too many operands! Program Aborted.\n");
-                printf("Last line processed: %s\n", instructionArr[lineNum][j]);
+                printf("Last line processed: %d\n", instructionArr[lineNum][j]);
                 exit(-1);
             }
             memberNum += 1;
@@ -207,23 +213,46 @@ struct instruction **parse(char *codeStr) //return an array of instructions
         memcpy(code[lineNum], line, sizeof(struct instruction));
     }
 
-    //free(codeStr); //free code string allocated in readSource()
+    free(codeStr);                            //free code string allocated in readSource()
+    for (size_t i = 0; i < JMPTABLESIZE; i++) //initialize jumpTable
+    {
+        strncpy(jumpTable[i].label, "", OPSIZE);
+        jumpTable[i].pcLocation = -1;
+    }
     initJumpTable(code, instructionNum);
 
     return code;
 }
-//some error on pointers returned
 
-//should remove preceeding white space
-//should handle lables.
-//init bug test ok.
-//I shall reconstruct parse (and probably rename it )
+//Maybe I shall reconstruct parse() (and probably rename it )
+int rmvPreceedingSpc(char Allines[][LINESIZE], int instructionNum)
+{
+    //inplace remove preceeding  white space.
+    for (size_t i = 0; i < instructionNum; i++)
+    {
+        char *line = Allines[i];
+        int lineLen = strlen(line);
+        int j = 0;
+        while (j < OPSIZE)
+        {
+            if (isblank(line[j])) //locate to first non-space char.
+                j++;
+            else
+            {
+                break;
+            }
+        }
+        memcpy(Allines[i], line + j, lineLen - j + 1);
+    }
+    return 1;
+}
 
 void initJumpTable(struct instruction **ins, int LineNum)
 {
+    //initialize jumptable to all "" and -1;
     for (size_t i = 0; i < LineNum; i++)
     {
-        if (strncmp(ins[i]->label, "", OPSIZE)) //has lable
+        if (strncmp(ins[i]->label, "", OPSIZE)) //has label
         {
             strncpy(jumpTable[jumpTableIndex].label, ins[i]->label, OPSIZE);
             jumpTable[jumpTableIndex++].pcLocation = i;
@@ -231,12 +260,7 @@ void initJumpTable(struct instruction **ins, int LineNum)
     }
 }
 
-struct instruction *rmvPreceedingSpc(char *Allins[LINESIZE], int instructionNum)
-{
-    return NULL;
-}
-
-//execute part
+/******************execution part*****************/
 void execute(struct instruction **ins)
 {
     if (!initialize())
@@ -249,7 +273,7 @@ void execute(struct instruction **ins)
     int op = -1; //No. of operand
     int executionStatus = 1;
 
-    while (1) // run until explicated "halt"
+    while (1) // run until explicately "halt"
     {
         int currentPc = PC;
 
@@ -283,17 +307,28 @@ void execute(struct instruction **ins)
 
 int initialize(void)
 {
-    //private func of execute. Initialize all registers and memories.
+    //private func of execute. Initialize all registers and memories 0.
     //mem and reg are statiac, so they are by default 0
     //set condition codes
+    for (size_t i = 0; i < MEMSIZE; i++)
+    {
+        mem[i] = 0;
+    }
+    for (size_t i = 0; i < REGSIZE; i++)
+    {
+        reg[i] = 0;
+    }
+
     CC.OF = 0;
     CC.SF = 0;
     CC.ZF = 0;
+    PC = 0;
     return 1;
 }
 
 int guide(int operandNo, struct instruction *ins)
 {
+    //guide an instruction to its Instruction Simulator.
     enum InstructionSet
     {
         halt,
@@ -310,7 +345,6 @@ int guide(int operandNo, struct instruction *ins)
         mrmovq,
     };
 
-    //guide to instruction handlers.
     int exit_status = 1;
     switch (operandNo)
     {
@@ -422,13 +456,20 @@ int *decode(struct instruction *ins)
             offset = atoi(temp);
             regNo = (int)(opMember[j + 3]) - 48; //by anscii, reg No. are 0-7
             regOp = reg[regNo];
+            if ((regOp + offset) > MEMSIZE - 1)
+            {
+                printf("Warning! illegal address: %d(in decimal)\n", (regOp + offset));
+            }
             memLocation = (regOp + offset) & PTRMASK;
+
             op[i] = memLocation; //returned op is pointer
         }
+        //label operand are handled in findDest();
     }
     return op;
 }
 
+/***********Instruction Simulators***********/
 void I_addq(struct instruction *ins)
 {
 
@@ -467,16 +508,25 @@ void I_cmpq(struct instruction *ins)
     {
         CC.SF = 0;
     }
-
-    // seems there is no need to set OF in this simple simulation
+    if (temp > reg[operand[1]])
+    {
+        CC.OF = 1;
+    }
+    else
+    {
+        CC.OF = 0;
+    }
 }
 
 int findDest(char *label)
 {
     int dest = -1;
+    char labelCopy[OPSIZE];
+    strncpy(labelCopy, label + 1, OPSIZE); //remove "."
+
     for (size_t i = 0; i < jumpTableIndex + 1; i++)
     {
-        if (!strncmp(jumpTable[i].label, label, OPSIZE))
+        if (!strncmp(jumpTable[i].label, labelCopy, OPSIZE))
         {
             dest = jumpTable[i].pcLocation;
         }
@@ -511,7 +561,7 @@ void I_jne(struct instruction *ins)
 void I_jg(struct instruction *ins)
 {
 
-    if ((!CC.SF) && (!CC.ZF))
+    if (!(CC.SF ^ CC.OF) & (!CC.ZF))
     {
         PC = findDest(ins->operand1); //update pc to jump destination.
     }
@@ -521,7 +571,7 @@ void I_jg(struct instruction *ins)
 void I_jl(struct instruction *ins)
 {
 
-    if (CC.SF)
+    if (CC.SF ^ CC.OF)
     {
         PC = findDest(ins->operand1); //update pc to jump destination.
     }

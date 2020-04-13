@@ -3,5 +3,5 @@ irmovq $100 %r2
 irmovq $1 %r3
 L1: addq %r3 %r1
 cmpq %r2 %r1
-jl L1
+jl L1.
 halt
