@@ -1,14 +1,22 @@
 #include <iostream>
 #include <string>
 using namespace std;
-string val()
-{
-    string result = "candy";
-    return;
-}
-
+// string val()
+// {
+//     string result = "candy";
+//     return;
+// }
 int main()
 {
-    cout << val() << endl;
-    return 0;
+    string a;
+    int i;
+    int j;
+    for (i = 0; i < 6; i++)
+    {
+        for (j = 7; j > i; j--)
+        {
+            cout << "+";
+        }
+        cout << endl;
+    }
 }

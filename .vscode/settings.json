@@ -3,6 +3,10 @@
         "iostream": "cpp",
         "ostream": "cpp",
         "system_error": "c",
-        "xutility": "c"
+        "xutility": "c",
+        "stdio.h": "c",
+        "string": "cpp",
+        "xstring": "cpp",
+        "vector": "cpp"
     }
 }

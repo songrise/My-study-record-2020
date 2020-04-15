@@ -6,7 +6,7 @@ struct testStrncmp
 } ts;
 
 struct testStrncmp ts = {"test file"};
-
+//
 int main(int argc, char const *argv[])
 {
     char t[50] = "test file";

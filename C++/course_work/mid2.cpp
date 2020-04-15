@@ -35,7 +35,7 @@ int main()
     int i, insert;
     cout << "Data items in original order\n";
 
-    for (i = 0; i < ARRAY_SIZE; i++)
+    for (i = 0; i < num_count; i++)
     {
 
         cout << setw(4) << data[i];
