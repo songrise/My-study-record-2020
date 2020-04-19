@@ -555,7 +555,7 @@ int findDest(char *label)
 {
     int dest = -1;
     char labelCopy[OPSIZE];
-    strncpy(labelCopy, label + 1, OPSIZE); //remove "."
+    strncpy(labelCopy, label, OPSIZE); //!remove "." it sames no need to remove
 
     int test;
     for (size_t i = 0; i < jumpTableIndex + 1; i++)
@@ -653,3 +653,8 @@ void I_mrmovq(struct instruction *ins)
     reg[operand[1]] = mem[operand[0]];
     free(operand);
 }
+
+//TODO parse部分得重写 还有标签解析部分
+//case 是CRLF结尾
+//! 在建立label表时，需要去除结尾CRLF
+//! find Destination 时也去除

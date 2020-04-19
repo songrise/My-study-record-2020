@@ -1,0 +1,10 @@
+	irmovq $0, %r6
+	irmovq $0, %r7
+	cmpq %r6, %r7
+	je L2
+L1:	irmovq $7, %r7
+	rmmovq %r7, 7(%r7)
+	halt
+L2: irmovq $6, %r6
+	rmmovq %r6, 6(%r6)
+	halt

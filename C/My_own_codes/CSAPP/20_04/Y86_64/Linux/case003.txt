@@ -1,0 +1,8 @@
+L0: irmovq $2, %r0
+	irmovq $1, %r1
+	cmpq %r0, %r1
+	jl L1
+	halt
+L1:	subq %r1, %r0
+	rmmovq %r0, 0(%r1)
+	halt
