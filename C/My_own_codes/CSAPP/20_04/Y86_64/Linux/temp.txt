@@ -1,0 +1,22 @@
+        j = 0;
+        while (j < lineLen) //remove space between operand and comma
+        {
+
+            int lastNonBlank = 0;
+
+            if (line[j] == ',')
+            {
+                if (j != lastNonBlank + 1) //space between operand and comma
+                {
+                    char temp[MAXINS];
+                    strncpy(temp, line, lastNonBlank + 1);
+                    temp[lastNonBlank + 1] = '\0';
+                    result = strncat(temp, line + j, MAXINS);
+                    memcpy(Allines[i], result, strlen(result) + 1);
+                }
+            }
+
+            if (!isblank(line[j]))
+                lastNonBlank = j;
+            j += 1;
+        }

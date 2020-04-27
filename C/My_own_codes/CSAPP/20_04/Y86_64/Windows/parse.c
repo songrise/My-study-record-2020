@@ -103,6 +103,7 @@ int main(int argc, char const *argv[])
 
     return 0;
 }
+
 char *readSource(const char *filename) //read a file and store it as a string
 {
 

@@ -1,0 +1,8 @@
+                irmovq $				1   , %        r2
+irmovq               $       0      ,		 $     r0
+  							  	irmovq $16, %r1
+L2: rmmovq     %r0, 0(%   r0)
+    addq %r2,   %   r0
+    cmpq %r1        ,       %	r0
+jl              L2
+  			   halt
