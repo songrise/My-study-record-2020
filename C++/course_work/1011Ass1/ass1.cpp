@@ -91,7 +91,11 @@ int get_order()
 
 void set_check(int *packed, int *ordered, int orderedLen)
 {
-    for (size_t i = 0; i < orderedLen; i++)
+    //todo packed arr should be newed.
+    //todo define new func to find set .
+    int packed_index;
+    sort(ordered, ordered + orderedLen);
+    for (packed_index = 0; packed_index < orderedLen; packed_index++)
     {
         //TODO check if it is set
         //TODO if it is, put it into packed arr
