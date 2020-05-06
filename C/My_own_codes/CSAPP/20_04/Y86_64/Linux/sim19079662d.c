@@ -1,10 +1,10 @@
 /*
 *By Ruixiang JIANG in 2020/4/11
 * ALL rights reserved
-*Compile in unix systems
+*Compile in Unix systems
 */
 #include <stdio.h>
-#include <stdlib.h>
+#include <stdlib.h>~
 #include <string.h>
 #include <ctype.h>
 
@@ -80,6 +80,8 @@ void show();
 int main(int argc, char const *argv[])
 {
     int i = 0;
+    if (argc == 1)
+        printf("No input files!\n");
     for (i = 1; i < argc; i++)
     {
         char *codeStr = readSource(argv[i]);
@@ -476,7 +478,7 @@ int initialize(void)
     CC.SF = 0;
     CC.ZF = 0;
     PC = 0;
-    //jump table are initialized in parse part.
+    //jump table are initialized in parse() part.
     return 1;
 }
 
@@ -507,22 +509,18 @@ int guide(int operandNo, struct instruction *ins)
         break;
     case addq:
         I_addq(ins);
-
         break;
     case subq:
         I_subq(ins);
-
         break;
     case cmpq:
         I_cmpq(ins);
         break;
     case je:
         I_je(ins);
-
         break;
     case jne:
         I_jne(ins);
-
         break;
     case jg:
         I_jg(ins);
@@ -544,7 +542,6 @@ int guide(int operandNo, struct instruction *ins)
         break;
     default:
         exit_status = -1;
-
         break;
     }
     return exit_status;
@@ -663,7 +660,7 @@ void I_cmpq(struct instruction *ins)
     {
         CC.SF = 0;
     }
-    if (temp > reg[operand[1]]) //overflowed
+    if ((reg[operand[0]] > 0 && temp > reg[operand[1]]) || (reg[operand[0]] < 0 && temp < reg[operand[1]])) //overflowed
     {
         CC.OF = 1;
     }
@@ -672,12 +669,12 @@ void I_cmpq(struct instruction *ins)
         CC.OF = 0;
     }
 }
-//bugs on linux system
+
 int findDest(char *label)
 {
     int dest = -1;
     char labelCopy[OPSIZE];
-    strncpy(labelCopy, label, OPSIZE); //!remove "." it sames no need to remove
+    strncpy(labelCopy, label, OPSIZE); //!remove "." (it sames no need to remove)
 
     int test;
     int i;
@@ -734,7 +731,7 @@ void I_jne(struct instruction *ins)
 void I_jg(struct instruction *ins)
 {
 
-    if (!(CC.SF ^ CC.OF) & (!CC.ZF))
+    if ((!(CC.SF ^ CC.OF)) & (!CC.ZF))
     {
         PC = findDest(ins->operand1); //update pc to jump destination.
     }

@@ -82,7 +82,7 @@ void draw(char Symbol, int Width, int Number, char Type)
                 {
                     cout << Symbol;
                 }
-                for (int k = 0; k < Width - i; k++)
+                for (int k = 0; k < Width - i - 1; k++)
                 {
                     cout << ' ';
                 }
@@ -98,7 +98,7 @@ void draw(char Symbol, int Width, int Number, char Type)
         {
             for (int j = 0; j < Number; j++) //repeat Number times
             {
-                for (int k = 0; k < Width - i; k++)
+                for (int k = 0; k < Width - i - 1; k++)
                 {
                     cout << ' ';
                 }

@@ -1,0 +1,6 @@
+irmovq $1, %r0
+irmovq $-128, %r1
+cmpq %r0, %r1
+jg L1
+irmovq $1, %r2
+L1: halt
