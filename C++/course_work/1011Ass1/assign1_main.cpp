@@ -6,8 +6,8 @@
 /***************INCLUDES***************/
 #include <iostream>
 #include <string>
-#include <cstring>
 #include <stdio.h>
+#include <cstring>
 #include <iomanip>
 #include <cctype>
 /***********END OF INCLUDES************/
@@ -25,7 +25,7 @@
 void welcome();
 int get_command(void);
 void get_OIS(char *arr, int arrLen);
-void food_menu(); // draw food menu
+void show_menu(); // draw menu
 int get_order();
 int *set_pack(int *ordered, int orderedLen, int *packedLen); //detect if user ordered set combos, return packed array.
 void check_out(char *ois, int *packed, int packed_len);
@@ -84,7 +84,7 @@ int main(void)
         draw_line('=', WIDTH);
         char hi[MAXOIS + 10] = "Hi, ";
         draw_embraced('|', strncat(hi, ois, MAXOIS), 1);
-        food_menu();
+        show_menu();
 
         int ordered_index = 0; // index for the "ordered" array.
 
@@ -175,7 +175,7 @@ void get_OIS(char *oisArr, int arrLen)
     cin.sync();
 }
 
-void food_menu(void)
+void show_menu(void)
 {
     draw_embraced('|', "FOOD MENU", 1);
     draw_line('=', WIDTH);
@@ -394,6 +394,7 @@ void check_out(char *ois, int *packed, int packedLen)
 
     if (total_price > 100) //discont
     {
+        // I used c++ style precision here.
         cout << "|  Original Price                                | $" << fixed << setprecision(2) << total_price << " |" << endl;
         cout << "|  Price after 95 \%discont                       | $" << fixed << setprecision(2) << total_price * 0.95 << " |" << endl;
     }
@@ -428,7 +429,7 @@ inline void draw_embraced(char symbol, const char *string, int option) // print 
         cout << "string is too long, program aborted.";
         exit(-1);
     }
-    //width is hardcoded to 60 here. Because I don't know how to set it to a macro or a variable...z
+    //width is hardcoded to 60 here. Because I don't know how to set it to a macro or a variable inside a formatted string.
     if (option == 0) //left aligned
         printf("%c%-58s%c", symbol, string, symbol);
 
