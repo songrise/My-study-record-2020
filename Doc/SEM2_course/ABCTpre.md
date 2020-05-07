@@ -20,9 +20,9 @@
 
 
 
-hello my name is 。。
+Thanks for previous presenter,
 
-The second advantage that I would like to say is the reliability of hydropower system.
+My name is Ryan. The second advantage that I would like to say is the reliability of hydropower system.
 
 First of all, what is reliability?
 
@@ -30,7 +30,7 @@ It means to what extent can we rely on them. In fact, hydropower system is highl
 
 Why? Because hydropower energy can resume operations in isolation without drawing on an outside power source, which known as the ability of blackstart.
 
-So we already know hydropower is very reliable now, lets look into an example. I don't know if you ever heard the Northeast blackout of 2003. It is possibly one of the severest blackout in human history, which affected about 55 million people in the United States and Canada. We actually can see from the picture that how severe it was. Research says that it was initially caused by software bugs. And Then followed by other backup generation systems failing together. However, it turns out that hydropower facilities in New York and elsewhere operated continuously through the blackout, and helped to restore power to millions of Americans. So we an see from this example that hydropower energy is more reliable than other sustainable energies.
+Now lets look into an example. I don't know if you ever heard of the Northeast blackout of 2003. It is possibly one of the severest blackout in human history, which affected about 55 million people in the United States and Canada. We actually can see from the picture that how severe it was. Research says that it was initially caused by software bugs. And Then followed by other backup generation systems failing together. However, it turns out that hydropower facilities in New York and elsewhere operated continuously through the blackout, and helped to restore power to millions of Americans. So we an see from this example that hydropower energy is more reliable than other sustainable energies.
 
 Next, I will talk about the outcomes of its reliably, which are low maintenance cost, and long lifespan.
 
@@ -39,15 +39,15 @@ Next, I will talk about the outcomes of its reliably, which are low maintenance 
 P2
 First, lets check its low maintenance cost.
 
-Hydropower station has high capital cost, but the maintenance cost is usually very low. What is capital cost? It is roughly the cost to build the hydropower station. So to build a station is usually more expensive. But the cost to maintain it is usually low. According to the IRENA, the maintenance cost is just around 2% of the capital cost every year. And the larger the power station, the lower maintenance cost.
+Hydropower station has high capital cost, but the maintenance cost is usually very low. What is capital cost? It is roughly the cost to build the hydropower station. So to build a station is usually more expensive. But the cost to maintain it is usually low. According to the IRENA, the maintenance cost is just around 2% of the capital cost every year. And the larger the power station is, the lower maintenance cost.
 
-And also, hydropower station usually not require a lot of workers. It means that it is more automated.
+And also, hydropower station usually not require a lot of workers.
 
 So, although the cost to build a hydropower station is quite high, the cost to generate power is low in long run. It also means that low energy consumption to maintain it.
 
 P3
 
-Another thing that I'm going to talk about  is the lifespan of hydropower station. According to EIA and NREL. The lifespan of hydropower station is about 50 to one hundred years. It is significantly longer than other renewable energy. The solar panel is 25 to 30 years. The wind turbine is 20 to 25 years. and the nuclear power station is 30 - 40 years.
+Another thing that I'm going to talk about is the lifespan of hydropower station. According to EIA and NREL. The lifespan of hydropower station is about 50 to one hundred years. It is significantly longer than other renewable energy. The solar panel is 25 to 30 years. The wind turbine is 20 to 25 years. and the nuclear power station is 30 - 40 years.
 
 So, we can see from this table that hydropower systems have very long operational lives.
 
@@ -57,4 +57,4 @@ Now lets check an example. The first hydropower station in China is ShiLongBa hy
 
 Then why does it last a long time? One reason is that it is designed to be so. If it cannot endure a long time or easy to be destroyed, it may have very fatal outcomes, for example, the city downstream maybe flooded. So the hydropower station must be stable enough.
 
-Lastly, how does it long lifespan mitigates climate change? My answer is - It produces fewer waste in upgrade. For example, The solar panel system has to be upgraded around 30 years. Then the old panels will turn into wastes, and degradation of them may produce a lot of gases, which will contribute to global warming. However, Hydropower station has long life, so there is no need to upgrade frequently, and thus fewer wastes.
+Lastly, how does it long lifespan mitigates climate change? My answer is - It produces fewer waste in upgrade. For example, The solar panel system has to be upgraded around 30 years. Then the old panels will turn into wastes, and degradation of them may produce a lot of gases, which will contribute to global warming. However, Hydropower station has long life, so there is no need to upgrade frequently, and thus fewer wastes. OK, this is end of my part.

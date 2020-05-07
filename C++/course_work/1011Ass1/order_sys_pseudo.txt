@@ -1,0 +1,30 @@
+
+//This is pseudo-code for 7-23 cofe ordering system
+
+welcome_user()
+while(start_ordering() == True)
+{
+    while (is_empty(OIS))
+    {
+        OIS <- get_user_OIS()
+    }
+
+    show_food_menu()
+
+    do
+    {
+        while (not_valid(ordered_item))
+        {
+            ordered_item <- get_user_order()
+        }
+    }
+    while(continue_order() == True)
+
+    packed_item <- pack(ordered_item) // find set combo
+    calculate_price()
+    show_receipt()
+}
+
+bye()
+
+//end of pseudo-code

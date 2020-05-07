@@ -1,3 +1,7 @@
+/*
+*By Ruixiang JIANG for COMP1011 assignment 1
+*Compile under Linux g++
+*/
 
 /***************INCLUDES***************/
 #include <iostream>
@@ -10,11 +14,11 @@
 
 /*************CONSTANTS****************/
 #define MAXITEMS 100 //max foods
-#define MAXOIS 40    //max length of ois string
+#define MAXOIS 41    //max length of ois string(including '\0')
 #define FOODNUM 16   //total number of foods
 #define NAMELEN 40   //max length of a food name
 #define CODELEN 3    //max length of a food code
-#define WIDTH 60     //length of horizontal line
+#define WIDTH 60     //length of the horizontal line
 /**********END OF CONSTANTS***********/
 
 /********FUNCTION PROTOTYPES*********/
@@ -23,9 +27,9 @@ int get_command(void);
 void get_OIS(char *arr, int arrLen);
 void food_menu(); // draw food menu
 int get_order();
-int *set_pack(int *ordered, int orderedLen, int *packedLen); //check if user ordered set combos, return packed array.
+int *set_pack(int *ordered, int orderedLen, int *packedLen); //detect if user ordered set combos, return packed array.
 void check_out(char *ois, int *packed, int packed_len);
-//UI functions
+/*UI functions*/
 inline void draw_line(char symbol, size_t width);                           //draw horizontal line
 inline void draw_embraced(char symbol, const char *string, int option = 0); // print string embraced by given symbol
 /**********END OF PROTOTYPES*********/
@@ -63,8 +67,9 @@ const FoodStruct food[FOODNUM] = {
 
 using namespace std;
 
-int main(int argc, char const *argv[])
+int main(void)
 {
+    //Refer to pesudo-code for more clear version of main() function.
     welcome();
     while (get_command() == 1)
     {
@@ -81,9 +86,9 @@ int main(int argc, char const *argv[])
         draw_embraced('|', strncat(hi, ois, MAXOIS), 1);
         food_menu();
 
-        int ordered_index = 0;
+        int ordered_index = 0; // index for the "ordered" array.
 
-        do //user order foods
+        do //user start ordering foods
         {
             ordered[ordered_index++] = get_order();
             draw_line('-', WIDTH);
@@ -110,16 +115,18 @@ int main(int argc, char const *argv[])
     }
 
     draw_line('*', WIDTH);
-    draw_embraced('*', "System Terminated. Good Bye!", 1);
+    draw_embraced('*', "System Exited. Good Bye!", 1);
     draw_line('*', WIDTH);
 
     return 0;
 }
+
 /******FUNCTION PART1(SYSTEM IMPLEMENT)******/
 
 void welcome()
 {
     draw_line('#', WIDTH);
+    //draw "723 cafe"
     cout << "#             ____   ___ ____           __                 #\n"
          << "#            |__  |_|_  )__ /  __ __ _ / _|___             #\n"
          << "#              / /___/ / |_ \\ / _/ _` |  _/ -_)            #\n"
@@ -138,10 +145,11 @@ void welcome()
 
 int get_command()
 {
-    string command; //avoid user input non-digit values.
+    string command; //string instead of int, to avoid user input non-digit values.
     cin >> command;
     while (command != "1" && command != "0")
     {
+        // ask user input again.
         cin.clear();
         cin.sync();
 
@@ -186,7 +194,7 @@ void food_menu(void)
 int get_order()
 {
     int food_NO;
-    bool success = false;
+    bool success = false; //got order or not?
     cout << "                Please input food code: ";
     char input_code[NAMELEN]; //longer than need. To avoid buffer overflow.
 
@@ -233,16 +241,16 @@ int *set_pack(int *ordered, int orderedLen, int *packedLen)
     int packed_index = 0;
     int *packed = new int[orderedLen];
 
-    int ordered_status[FOODNUM] = {0}; //kind of like bucket sort
+    int ordered_status[FOODNUM] = {0}; //a "bucket"
 
     for (int i = 0; i < orderedLen; i++)
     {
-        //update ordered_status in each iteration.
+        //update ordered_status array in each iteration.
         int ordered_food_no = ordered[i];
         ordered_status[ordered_food_no]++;
     }
 
-    //codes below looks ugly... My main idea is to check each possible set combanation.
+    //brute force algorithm to detect set combo.
     while (ordered_status[5])
     {
         //check S1 set
@@ -352,7 +360,7 @@ int *set_pack(int *ordered, int orderedLen, int *packedLen)
             break;
     }
 
-    //put the rest of food into packed array (since they can not form a set)
+    //put the rest of food into packed array
     for (size_t i = 0; i < FOODNUM; i++)
     {
         while (ordered_status[i])
@@ -399,7 +407,7 @@ void check_out(char *ois, int *packed, int packedLen)
     cout << endl;
 }
 
-/******FUNCTION PART2 (UI IMPLEMENT)******/
+/******FUNCTION PART2 (EXTRA UI IMPLEMENTATION)******/
 
 inline void draw_line(char symbol, size_t width) //draw a 1horizontal line
 {
@@ -416,6 +424,7 @@ inline void draw_embraced(char symbol, const char *string, int option) // print 
 
     if (len >= WIDTH - 2)
     {
+        //exceptions.
         cout << "string is too long, program aborted.";
         exit(-1);
     }
