@@ -5,6 +5,11 @@
 *.Rhistory
 *.Rproj
 
+*.zip
+*.7z
+*.tar
+*.jar
+
 #obj files
 *.o
 *.out

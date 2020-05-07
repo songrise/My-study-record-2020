@@ -94,7 +94,7 @@ int main(void)
             draw_line('-', WIDTH);
             draw_embraced('|', "  Command:  |  0: Check Out  |  1: Continue this order ", 1);
             draw_line('-', WIDTH);
-            cout << "               Please enter your command: ";
+            cout << "               Please input your command: ";
 
         } while (get_command() == 1);
         //order finised.
@@ -109,7 +109,7 @@ int main(void)
         draw_line('-', WIDTH);
         draw_embraced('|', " Next Costumer? | 0: Exit System | 1: Start Ordering ", 1);
         draw_line('-', WIDTH);
-        cout << "               Please enter your command: ";
+        cout << "               Please input your command: ";
 
         delete[] packed; // free memory allocated in set_pack();
     }
@@ -121,17 +121,17 @@ int main(void)
     return 0;
 }
 
-/******FUNCTION PART1(SYSTEM IMPLEMENT)******/
+/******FUNCTION PART1(SYSTEM IMPLEMENTATION)******/
 
 void welcome()
 {
-    draw_line('#', WIDTH);
+    draw_line('=', WIDTH);
     //draw "723 cafe"
-    cout << "#             ____   ___ ____           __                 #\n"
-         << "#            |__  |_|_  )__ /  __ __ _ / _|___             #\n"
-         << "#              / /___/ / |_ \\ / _/ _` |  _/ -_)            #\n"
-         << "#             /_/   /___|___/ \\__\\__,_|_| \\___|            #\n";
-    draw_line('#', WIDTH);
+    cout << "|             ____   ___ ____           __                 |\n"
+         << "|            |__  |_|_  )__ /  __ __ _ / _|___             |\n"
+         << "|              / /___/ / |_ \\ / _/ _` |  _/ -_)            |\n"
+         << "|             /_/   /___|___/ \\__\\__,_|_| \\___|            |\n";
+    draw_line('=', WIDTH);
     // cout.setf(ios::center);
     draw_embraced(' ', "Welcome to 7-23 Cafe Food Service Order System!", 1);
 
@@ -140,7 +140,7 @@ void welcome()
     draw_embraced('|', "0: Exit the System", 1);
     draw_embraced('|', "1: Start Ordering", 1);
     draw_line('-', WIDTH);
-    cout << "               Please enter your command: ";
+    cout << "               Please input your command: ";
 }
 
 int get_command()
@@ -177,7 +177,7 @@ void get_OIS(char *oisArr, int arrLen)
 
 void show_menu(void)
 {
-    draw_embraced('|', "FOOD MENU", 1);
+    draw_embraced('|', "MENU", 1);
     draw_line('=', WIDTH);
     printf("|  CODE  |                 NAME                  |  PRICE  |\n");
     draw_line('-', WIDTH);
@@ -187,6 +187,43 @@ void show_menu(void)
         printf("|   %s   | %-30s        | $%-.2f  |\n", food[i].item_code, food[i].name, food[i].price);
         if (2 == i || 5 == i || 10 == i)
             draw_line('-', WIDTH);
+        if (i > 10)
+        {
+            //show the set make-up
+            switch (i)
+            {
+            case 11:
+                printf("|        |   -%-30s     |         |\n", food[6].name);
+                printf("|        |   -%-30s     |         |\n", food[4].name);
+                printf("|        |    %-30s     |         |\n", "");
+                break;
+            case 12:
+                printf("|        |   -%-30s     |         |\n", food[9].name);
+                printf("|        |   -%-30s     |         |\n", food[2].name);
+                printf("|        |   -%-30s     |         |\n", food[4].name);
+                printf("|        |    %-30s     |         |\n", "");
+                break;
+            case 13:
+                printf("|        |   -%-30s     |         |\n", food[10].name);
+                printf("|        |   -%-30s     |         |\n", food[0].name);
+                printf("|        |    %-30s     |         |\n", "");
+                break;
+            case 14:
+                printf("|        |   -%-30s     |         |\n", food[10].name);
+                printf("|        |   -%-30s     |         |\n", food[6].name);
+                printf("|        |   -%-30s     |         |\n", food[1].name);
+                printf("|        |   -%-30s     |         |\n", food[5].name);
+                printf("|        |    %-30s     |         |\n", "");
+                break;
+            case 15:
+                printf("|        |   -%-30s     |         |\n", "Coffee or Tea");
+                printf("|        |   -%-30s     |         |\n", "Quiche or Pie");
+                break;
+
+            default:
+                break;
+            }
+        }
     }
     draw_line('=', WIDTH);
 }
@@ -392,11 +429,11 @@ void check_out(char *ois, int *packed, int packedLen)
     }
     draw_line('-', WIDTH);
 
-    if (total_price > 100) //discont
+    if (total_price > 100) //discount
     {
         // I used c++ style precision here.
         cout << "|  Original Price                                | $" << fixed << setprecision(2) << total_price << " |" << endl;
-        cout << "|  Price after 95 \%discont                       | $" << fixed << setprecision(2) << total_price * 0.95 << " |" << endl;
+        cout << "|  Price after 95 \%discount                      | $" << fixed << setprecision(2) << total_price * 0.95 << " |" << endl;
     }
     else
         cout << "|  Total Price  |                                | $" << fixed << setprecision(2) << total_price << "  |" << endl;
@@ -450,6 +487,8 @@ inline void draw_embraced(char symbol, const char *string, int option) // print 
     }
     else
     {
+        //exceptions.
         cout << "Illegal option: " << option << endl;
+        exit(-1);
     }
 }

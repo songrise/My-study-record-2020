@@ -6,4 +6,6 @@
 
 3. [pro_ana_req.pdf]: Problem analysis and requirements document for the ordering system.
 
-4. [Readme.txt]: This file. Description of all files in this folder.
+4. [sys_design_doc.pdf]:  The system design document. It includes use case graph and storyboard analysis.
+
+5. [Readme.txt]: This file. Description of all files in this folder.

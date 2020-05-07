@@ -1,5 +1,4 @@
-
-//This is pseudo-code for 7-23 cofe ordering system
+//This is pseudo-code for 7-23 cafe ordering system
 
 welcome_user()
 while(start_ordering() == True)
@@ -9,7 +8,7 @@ while(start_ordering() == True)
         OIS <- get_user_OIS()
     }
 
-    show_food_menu()
+    show_menu()
 
     do
     {
