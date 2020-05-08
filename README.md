@@ -1,4 +1,7 @@
 # My-study-record-2020
+[![codebeat badge](https://codebeat.co/badges/13f0a736-5676-4a62-827e-547fa7aedaca)](https://codebeat.co/projects/github-com-songrise-my-study-record-2020-master)
+![](https://img.shields.io/badge/license-MIT-000000.svg)
+
 
 ## 这个库是什么？ Whats this repo for?
 
@@ -20,7 +23,7 @@ including my source code and study log. You are welcomed to follow and star.
 6. *Scheme*: folder for all Scheme-related files (note the extension name is .rkt).
 7. *.vscode* (to be deleted.): folder for VSCODE.
 8. *.gitignore*: file for git push
-9. *log.txt*: log to record my studying process
+9. *Log.txt*: log to record my studying process
 10. *README.md*: this file.
 
 ***
