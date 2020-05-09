@@ -2,7 +2,7 @@
 ![](https://img.shields.io/github/last-commit/songrise/My-study-record-2020)
 ![](https://img.shields.io/github/stars/songrise/My-study-record-2020)
 [![codebeat badge](https://codebeat.co/badges/13f0a736-5676-4a62-827e-547fa7aedaca)](https://codebeat.co/projects/github-com-songrise-my-study-record-2020-master)
-![](https://img.shields.io/badge/license-GPL-000000.svg)
+![](https://img.shields.io/badge/license-GPL_3.0-2f1244.svg)
 
 
 
