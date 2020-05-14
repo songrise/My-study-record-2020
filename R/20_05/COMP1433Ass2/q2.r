@@ -60,4 +60,4 @@ for (i in c(1:nrow(q2data))) {
 }
 
 ############Q2.(5)##############
-write.table(q2data,file = "./newscores.csv")
+write.table(q2data,file = "./newscores.csv",quote=FALSE,sep=',')
