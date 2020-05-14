@@ -91,46 +91,47 @@ int main(int argc, char const *argv[])
     }
     return 0;
 }
-void show()
+// void show()
+// {
+//     printf("%%r0..7: ");
+//     int i;
+//     for (i = 0; i < 8; i++)
+//     {
+//         printf("%d", reg[i]);
+//         if (i != 7)
+//             printf(" ");
+//     }
+//     printf("\nM0..15: ");
+//     for (i = 0; i < 16; i++)
+//     {
+//         printf("%d", mem[i]);
+//         if (i != 15)
+//             printf(" ");
+//     }
+// }
+void show() //!detailed show() for debugging
 {
-    printf("%%r0..7: ");
     int i;
+    printf("\n################Status###############\n");
     for (i = 0; i < 8; i++)
     {
-        printf("%d", reg[i]);
-        if (i != 7)
-            printf(" ");
+        printf("Reg%d:%d ", i, reg[i]);
     }
-    printf("\nM0..15: ");
+    printf("\n");
     for (i = 0; i < 16; i++)
     {
-        printf("%d", mem[i]);
-        if (i != 15)
-            printf(" ");
+        printf("Mem%d:%d ", i, mem[i]);
     }
-}
-// void show()//!detailed show() for debugging
-// {
-//     printf("\n################Status###############\n");
-//     for (int i = 0; i < 8; i++)
-//     {
-//         printf("Reg%d:%d ", i, reg[i]);
-//     }
-//     printf("\n");
-//     for (int i = 0; i < 16; i++)
-//     {
-//         printf("Mem%d:%d ", i, mem[i]);
-//     }
-//     printf("\n");
+    printf("\n");
 
-//     for (int i = 0; i < jumpTableIndex + 1; i++)
-//     {
-//         printf("Label:%s at:%d ", jumpTable[i].label, jumpTable[i].pcLocation);
-//     }
-//     printf("\n");
-//     printf("SF:%d ZF:%d OF:%d PC:%d", CC.SF, CC.ZF, CC.OF, PC);
-//     printf("\n###############################\n");
-// }
+    for (i = 0; i < jumpTableIndex + 1; i++)
+    {
+        printf("Label:%s at:%d ", jumpTable[i].label, jumpTable[i].pcLocation);
+    }
+    printf("\n");
+    printf("SF:%d ZF:%d OF:%d PC:%d", CC.SF, CC.ZF, CC.OF, PC);
+    printf("\n###############################\n");
+}
 
 char *readSource(const char *filename) //read a file and store it as a string
 {
@@ -456,6 +457,7 @@ void execute(struct instruction **ins)
         {
             PC++;
         }
+        show();
     }
 }
 
@@ -565,7 +567,6 @@ int fetch(char *instructionName)
         "rmmovq",
         "mrmovq",
     };
-
     int i;
     for (i = 0; i < 12; i++)
     {
@@ -583,6 +584,7 @@ int fetch(char *instructionName)
 
     return -1;
 }
+
 int *decode(struct instruction *ins)
 {
     // return an array in form of integers
