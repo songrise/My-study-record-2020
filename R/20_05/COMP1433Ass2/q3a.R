@@ -1,9 +1,33 @@
 gambleNtimes <- function(n) {
-    #Return the probabilty that not run out of money after n gamble
-    win = 0.49 # prob. to win each gamble.
-    fortune = 100
-    #return prob. that fail 99 or less times after n times gamble
-    return (pbinom(fortune-1, n, 0.51))
+    #n is the gamble time, return probability that do not run out of money after n gamble.
+    SimulationTimes = 100000
+    winTimes = 0 # if he do not run out of money at last, we call it win.
+
+    for (i in c(1:SimulationTimes)) {
+        fortune = 100
+        sim = runif(n)
+
+        for (i in c(1:n)) {
+
+            if (sim[i] <= 0.49) {# win a gamble
+                fortune = fortune + 1
+            }
+            else {
+                fortune = fortune - 1
+            }
+
+            if (fortune < 0) {
+                break
+            }
+        }
+
+        if (fortune > 0)
+        {
+            winTimes = winTimes + 1
+        }
+    }
+
+    return (winTimes / SimulationTimes)
 }
 
 times = 100
