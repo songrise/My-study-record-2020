@@ -21,12 +21,13 @@ including my source code and study log. You are welcomed to follow and star.
 1. *C*: folder for all C-related files
 2. *C++*: folder for all C++-related files
 3. *Doc*: folder for all documents(text file, markdown, pdf)
-4. *Python*: folder for all Python-related files
-5. *R*: folder for all R-related files
-6. *Scheme*: folder for all Scheme-related files (note the extension name is .rkt).
-7. *.vscode* (to be deleted.): folder for VSCODE.
-8. *.gitignore*: file for git push
-9. *Log.txt*: log to record my studying process
-10. *README.md*: this file.
+4. *Java*: folder for all Java-related files
+5. *Python*: folder for all Python-related files
+6. *R*: folder for all R-related files
+7. *Scheme*: folder for all Scheme-related files (note the extension name is .rkt).
+8. *.vscode* (to be deleted.): folder for VSCODE.
+9. *.gitignore*: file for git push
+10. *Log.txt*: log to record my studying process
+11. *README.md*: this file.
 
 ***
