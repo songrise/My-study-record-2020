@@ -1,5 +1,5 @@
 #include <stdio.h>
-#define LEN 7
+#define LEN 13
 
 int test1(int *A, int N)
 {
@@ -27,7 +27,7 @@ int test1(int *A, int N)
 
 int test2(int *A, int N)
 {
-    //of median locality.l
+    //of median locality.
     int sum = 0;
     int i;
     for (i = 0; i < (N / 3); i++)
@@ -71,9 +71,32 @@ int test3(int *A, int N)
     return sum;
 }
 
+int test4(int *A, int N)
+{
+    int sum = 0;
+    for (size_t i = 0; i < N + 6; i++)
+    {
+        if (i < N)
+        {
+            sum += A[i / 3];
+        }
+        if (i >= 3 && i < N + 3)
+        {
+            sum += A[(i - 3) / 3 + 1];
+        }
+        if (i >= 6)
+        {
+            sum += A[(i - 6) / 3 + 2];
+        }
+        // the array is only referenced sequentially, So good spatial locality.
+    }
+
+    return sum;
+}
+
 int main(int argc, char const *argv[])
 {
     int A[] = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15};
-    printf("%d, %d, %d", test1(A, LEN), test2(A, LEN), test3(A, LEN));
+    printf("%d, %d, %d, %d", test1(A, LEN), test2(A, LEN), test3(A, LEN), test4(A, LEN));
     return 0;
 }

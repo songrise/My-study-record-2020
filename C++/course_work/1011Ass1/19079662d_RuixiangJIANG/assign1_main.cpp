@@ -7,6 +7,7 @@
 #include <iostream>
 #include <string>
 #include <stdio.h>
+#include <stdlib.h>
 #include <cstring>
 #include <iomanip>
 #include <cctype>
@@ -145,9 +146,9 @@ void welcome()
 
 int get_command()
 {
-    string command; //string instead of int, to avoid user input non-digit values.
+    char command[NAMELEN]; //string instead of int, to avoid user input non-digit values.
     cin >> command;
-    while (command != "1" && command != "0")
+    while ((command[0] != '1' && command[0] != '0') || command[1] != '\0')
     {
         // ask user input again.
         cin.clear();
@@ -161,7 +162,7 @@ int get_command()
         cin >> command;
     }
     cin.sync();
-    return stoi(command);
+    return atoi(command);
 }
 
 void get_OIS(char *oisArr, int arrLen)
