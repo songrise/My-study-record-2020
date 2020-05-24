@@ -9,6 +9,7 @@
         "xstring": "cpp",
         "vector": "cpp",
         "iomanip": "cpp",
-        "istream": "cpp"
+        "istream": "cpp",
+        "utility": "cpp"
     }
 }

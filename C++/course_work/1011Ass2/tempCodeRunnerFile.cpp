@@ -1,1 +1,1 @@
-        printf("Enterend AIStep\n");
+    draw_embraced('|', "=============", 1);
