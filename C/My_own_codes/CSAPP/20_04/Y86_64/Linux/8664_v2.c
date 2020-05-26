@@ -89,46 +89,46 @@ int main(int argc, char const *argv[])
     return 0;
 }
 
-void show()
-{
-    printf("%%r0..7: ");
-    for (size_t i = 0; i < 8; i++)
-    {
-        printf("%d", reg[i]);
-        if (i != 7)
-            printf(" ");
-    }
-    printf("\nM0..15: ");
-    for (size_t i = 0; i < 16; i++)
-    {
-        printf("%d", mem[i]);
-        if (i != 15)
-            printf(" ");
-    }
-}
-
-// void show()//!detailed show() for debugging
+// void show()
 // {
-//     printf("\n################Status###############\n");
-//     for (int i = 0; i < 8; i++)
+//     printf("%%r0..7: ");
+//     for (size_t i = 0; i < 8; i++)
 //     {
-//         printf("Reg%d:%d ", i, reg[i]);
+//         printf("%d", reg[i]);
+//         if (i != 7)
+//             printf(" ");
 //     }
-//     printf("\n");
-//     for (int i = 0; i < 16; i++)
+//     printf("\nM0..15: ");
+//     for (size_t i = 0; i < 16; i++)
 //     {
-//         printf("Mem%d:%d ", i, mem[i]);
+//         printf("%d", mem[i]);
+//         if (i != 15)
+//             printf(" ");
 //     }
-//     printf("\n");
-
-//     for (int i = 0; i < jumpTableIndex + 1; i++)
-//     {
-//         printf("Label:%s at:%d ", jumpTable[i].label, jumpTable[i].pcLocation);
-//     }
-//     printf("\n");
-//     printf("SF:%d ZF:%d OF:%d PC:%d", CC.SF, CC.ZF, CC.OF, PC);
-//     printf("\n###############################\n");
 // }
+
+void show()//!detailed show() for debugging
+{
+    printf("\n################Status###############\n");
+    for (int i = 0; i < 8; i++)
+    {
+        printf("Reg%d:%d ", i, reg[i]);
+    }
+    printf("\n");
+    for (int i = 0; i < 16; i++)
+    {
+        printf("Mem%d:%d ", i, mem[i]);
+    }
+    printf("\n");
+
+    for (int i = 0; i < jumpTableIndex + 1; i++)
+    {
+        printf("Label:%s at:%d ", jumpTable[i].label, jumpTable[i].pcLocation);
+    }
+    printf("\n");
+    printf("SF:%d ZF:%d OF:%d PC:%d", CC.SF, CC.ZF, CC.OF, PC);
+    printf("\n###############################\n");
+}
 
 char *readSource(const char *filename) //read a file and store it as a string
 {

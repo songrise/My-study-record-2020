@@ -1,0 +1,8 @@
+L0:	cmpq %r0,     %r1
+je	L1
+	irmovq $5, %r0
+L2:	irmovq $4, %r0
+L1:	irmovq $1, %r1
+	irmovq $2, %r2
+	subq %r1, %r2
+	halt

@@ -1,0 +1,5 @@
+L0: irmovq $5, %r0
+	irmovq $3, %r1
+	rrmovq %r1, %r2
+	rmmovq %r0, 1(%r1)
+	halt

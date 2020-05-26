@@ -1,0 +1,8 @@
+irmovq $4, %r4
+irmovq $5, %r5
+cmpq %r5, %r4
+cmpq %r4, %r5
+jg L3
+halt
+L3: subq %r4, %5
+halt

@@ -1,0 +1,5 @@
+irmovq $-12 , %r1
+  irmovq $18, %r2
+        rmmovq    %r1,  -15(  %r2)
+ mrmovq 15(%r1 ), %r0
+   halt

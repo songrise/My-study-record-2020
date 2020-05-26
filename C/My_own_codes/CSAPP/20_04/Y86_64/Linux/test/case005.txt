@@ -1,0 +1,6 @@
+	irmovq $2, %r6
+	irmovq $3, %r7
+	rrmovq %r6, %r5
+	rmmovq %r5, 10(%r0)
+	mrmovq 7(%r7), r1
+	halt
