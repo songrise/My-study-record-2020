@@ -8,20 +8,34 @@
 #include <vector>
 #include <algorithm>
 #include <unistd.h>
+
 /**************Macros***************/
 #define WIDTH 60
 #define BUFSIZE 256
 #define CENTERED 1
 #define LEFTALIGNED 0
 
+// control color of console, just ignore them when reading source file.
+#define CLOSE printf("\033[0m");
+#define BLACK printf("\033[30m");
+#define RED printf("\033[31m");
+#define GREEN printf("\033[32m");
+#define YELLOW printf("\033[33m");
+#define BLUE printf("\033[34m");
+#define WHITE printf("\033[37m");
+#define WHITE_BC printf("\033[47m"); //Temporarily disabled, because may cause bug on certain system.
+#define BOLD printf("\033[1m");
+//set console color
+
 /*************Function prototypes**************/
 void welcome(void);
 int get_command(void);
 int select_mode(void);
+// Color enable_color(void); //Temporarily disabled, because may cause bug on certain system.
 void pve();
 void pvp();
 int roll_dice();
-inline char piece(int chessID);
+inline void piece(int chessID);
 void draw_board(int *board);
 bool get_action(int *board, int first);
 void easy_comp_move(int *board, int first);
@@ -32,7 +46,7 @@ inline int dfs(const int &depth, const int &nowWho, int board[3][3]);
 void hard_comp_move(int *board, int first);
 inline void draw_line(char symbol, int width);                              //draw horizontal line
 inline void draw_embraced(char symbol, const char *string, int option = 0); // print string embraced by given symbol
-inline void msg_box(const char *string, char tb = '-', char lr = '|');
+inline void msg_box(const char *string, char tb = '-', char lr = '|');      //print string inside a message box
 
 using namespace std;
 
@@ -63,13 +77,18 @@ int main(int argc, char const *argv[])
 
 void welcome()
 {
-    draw_line('=', WIDTH);
+    // WHITE_BC
+    BLUE
+        BOLD
+
+            draw_line('=', WIDTH);
     draw_embraced('|', " _____ _     _____         _____          ", 1);
     draw_embraced('|', "|_   _(_) __|_   _|_ _  __|_   _|__   ___ ", 1);
     draw_embraced('|', "  | | | |/ __|| |/ _` |/ __|| |/ _ \\ / _ \\", 1);
     draw_embraced('|', "  | | | | (__ | | (_| | (__ | | (_) |  __/", 1);
     draw_embraced('|', "  |_| |_|\\___||_|\\__,_|\\___||_|\\___/ \\___|", 1);
     draw_line('=', WIDTH);
+    CLOSE
 }
 
 int get_command()
@@ -82,7 +101,9 @@ int get_command()
         // ask user input again.
         cin.clear();
         cin.sync();
+        RED
         msg_box("WRONG COMMAND");
+        CLOSE
 
         cout << "           Try again (Please input 1 or 0): ";
         cin >> command;
@@ -93,7 +114,6 @@ int get_command()
 
 int select_mode()
 {
-    // ! maybe use get_command()
     msg_box("|  Command  |  1: Vs A.I.  | 2: Vs Player ");
 
     char command[BUFSIZE]; //string instead of int, to avoid user input non-digit values.
@@ -105,7 +125,9 @@ int select_mode()
         // ask user input again.
         cin.clear();
         cin.sync();
-        msg_box("WRONG COMMAND");
+        RED
+            msg_box("WRONG COMMAND");
+        CLOSE
 
         cout << "           Try again (Please input 1 or 0): ";
         cin >> command;
@@ -117,8 +139,10 @@ int select_mode()
 /******FUNCTION PART2 (BACK-END)******/
 void pvp()
 {
+    GREEN
     msg_box("You selected Player vs Player.", '=');
-    int first_player = roll_dice() <= 3 ? 1 : 2;
+    CLOSE
+    int first_player = roll_dice() <= 3 ? 1 : 2; // if dice <= 3, then it is player1 first
     char dice_notice[BUFSIZE];
     sprintf(dice_notice, " You Rolled %d ! %s first.", first_player, first_player == 1 ? "Player 1" : "Player 2");
     msg_box(dice_notice);
@@ -160,12 +184,16 @@ void pvp()
 
 void pve()
 {
+    GREEN
     msg_box("You selected Player vs Computer.", '=');
+    CLOSE
     msg_box("|  Select Difficulty |  0: Easy  | 1: Hard   ");
     int hard_mode = get_command();
     char mode_notice[BUFSIZE];
     sprintf(mode_notice, "You selected %s mode.", hard_mode ? "hard" : "easy");
+    GREEN
     msg_box(mode_notice);
+    CLOSE
     int first_player = roll_dice() <= 3 ? 1 : 2;
     //in pve mode. 1 is player, 2 is computer.
     char dice_notice[BUFSIZE];
@@ -184,7 +212,7 @@ void pve()
                 draw_board(board);
             }
 
-            if (get_action(board, first_player))
+            if (get_action(board, first_player)) //user place his piece at this step
             {
 
                 draw_board(board);
@@ -198,6 +226,7 @@ void pve()
                 exit(-1);
             }
         }
+
         else if (next_step(board, first_player) == 2) //Computer's turn
         {
 
@@ -211,14 +240,24 @@ void pve()
         if (int winner = check_winner(board))
         {
             if (winner == 1)
+            {
+                GREEN
                 msg_box("You win, Congratulations!", '=');
+                CLOSE
+            }
             else
+            {
+                RED
                 msg_box("You lost", '=');
-            break;
+                CLOSE
+                break;
+            }
         }
         else if (i == 8) //winner == 0
         {
+            GREEN
             msg_box("Draw", '=');
+            CLOSE
         }
     }
 }
@@ -227,57 +266,87 @@ int roll_dice()
 {
     srand(time(0));
     int dice = (rand() % 6) + 1;
+    GREEN
     printf("                    Rolling dice");
     for (int i = 0; i < 6; i++)
     {
 
         printf(".");
         fflush(stdout);
-        usleep(180000);
+        usleep(200000);
     }
+    CLOSE
     printf("\r");
 
     return dice;
 }
 
-inline char piece(int id)
+inline void piece(int id)
 {
     switch (id)
     {
     case 0:
-        return ' ';
+        WHITE
+        printf(" ");
+        break;
     case 1:
-        return 'X';
+        BLUE
+        printf("X");
+        WHITE
+        break;
     case 2:
-        return 'O';
+        RED
+        printf("O");
+        WHITE
+
+        break;
 
     default:
-        cout << "Unexpected Error!";
+        printf("Unexpected Error!");
         exit(-1);
     }
 }
 
 void draw_board(int *board)
 {
-    char board_line[BUFSIZE];
+    // WHITE_BC tem
+    // BLACK
+    BOLD
     draw_line('=', WIDTH);
     draw_embraced('|', " ", 1);
-    draw_embraced('|', "=============", 1);
+    draw_embraced('|', "-------------", 1);
     draw_embraced('|', "|   |   |   |", 1);
-    sprintf(board_line, "| %c | %c | %c |", piece(board[0]), piece(board[1]), piece(board[2]));
-    draw_embraced('|', board_line, 1);
+    printf("|                      | ");
+    piece(board[0]);
+    printf(" | ");
+    piece(board[1]);
+    printf(" | ");
+    piece(board[2]);
+    printf(" |                       |\n");
     draw_embraced('|', "| 1 | 2 | 3 |", 1);
     draw_embraced('|', "|---+---+---|", 1);
     draw_embraced('|', "|   |   |   |", 1);
-    sprintf(board_line, "| %c | %c | %c |", piece(board[3]), piece(board[4]), piece(board[5]));
-    draw_embraced('|', board_line, 1);
+    printf("|                      | ");
+    piece(board[3]);
+    printf(" | ");
+    piece(board[4]);
+    printf(" | ");
+    piece(board[5]);
+    printf(" |                       |\n");
     draw_embraced('|', "| 4 | 5 | 6 |", 1);
     draw_embraced('|', "|---+---+---|", 1);
     draw_embraced('|', "|   |   |   |", 1);
-    sprintf(board_line, "| %c | %c | %c |", piece(board[6]), piece(board[7]), piece(board[8]));
-    draw_embraced('|', board_line, 1);
+    printf("|                      | ");
+    piece(board[6]);
+    printf(" | ");
+    piece(board[7]);
+    printf(" | ");
+    piece(board[8]);
+    printf(" |                       |\n");
     draw_embraced('|', "| 7 | 8 | 9 |", 1);
-    draw_embraced('|', "=============", 1);
+    draw_embraced('|', "-------------", 1);
+    draw_line('=', WIDTH);
+    CLOSE
 }
 
 bool get_action(int *board, int first)
@@ -316,7 +385,7 @@ bool get_action(int *board, int first)
 
 int next_step(int *board, int first)
 {
-    //This fuction determines the next symbol to be filled
+    //This fuction determines who is the next player (game sequence)
     int Otimes = 0, Xtimes = 0;
     for (int i = 0; i < 9; i++)
     {
@@ -346,7 +415,7 @@ int check_winner(int *board)
             return board[i];
     }
 
-    if (board[0] && (board[0] == board[4] && board[4] == board[9]))
+    if (board[0] && (board[0] == board[4] && board[4] == board[8]))
         return board[0];
     if (board[2] && (board[2] == board[4] && board[4] == board[6]))
         return board[2];
@@ -363,7 +432,7 @@ void easy_comp_move(int *board, int first)
         if (board[4] == 0)
             location = 5;
         else
-            location = (rand() % 9) + 1;
+            location = (rand() % 9) + 1;//random choose a location
 
         if (location < 1 || location > 9)
         {
@@ -375,6 +444,7 @@ void easy_comp_move(int *board, int first)
         }
         else //Valid input!!!
         {
+            GREEN
             printf("                    Processing");
             for (int i = 0; i < 6; i++)
             {
@@ -383,6 +453,7 @@ void easy_comp_move(int *board, int first)
                 fflush(stdout);
                 usleep(180000);
             }
+            CLOSE
             printf("\r");
             char pos_notice[BUFSIZE];
             sprintf(pos_notice, "AI selected position %d", location);
@@ -395,7 +466,7 @@ void easy_comp_move(int *board, int first)
 
 inline int Evaluate(int board[3][3])
 {
-
+    //setting weight to each board location
     int i, j;
     int cnt[3];
     int re = 0;
@@ -478,8 +549,8 @@ inline int Evaluate(int board[3][3])
 inline int dfs(const int &depth, const int &nowWho, int board[3][3])
 {
 
-    int i, j, t, ma = -100000, mi = 100000, ok = 0;
-    int eva = Evaluate(board);
+    int i, j, t, max_ = -100000, min_ = 100000, ok = 0;
+    int eva = Evaluate(board); //evaluate weight of chess board at this layer
     if (depth == 0 || (eva >= 1000) || (eva <= -1000))
     {
         return eva;
@@ -495,21 +566,23 @@ inline int dfs(const int &depth, const int &nowWho, int board[3][3])
             board[i][j] = nowWho + 1;
             t = dfs(depth - 1, nowWho ^ 1, board);
             board[i][j] = 0;
-            ma = max(t, ma);
-            mi = min(t, mi);
+            min_ = min(t, min_);
+            max_ = max(t, max_);
+
         }
     }
     if (!ok)
         return eva;
     if (nowWho == 0)
-        return ma;
+        return max_;
     if (nowWho == 1)
-        return mi;
+        return min_;
 }
 
 void hard_comp_move(int *board, int first)
 {
     int x, y, i, j;
+    // convert in to 2-D array, for DFS propose
     int boa[3][3] = {{board[0],
                       board[1],
                       board[2]},
@@ -519,7 +592,8 @@ void hard_comp_move(int *board, int first)
                      {board[6],
                       board[7],
                       board[8]}};
-    vector<pair<int, pair<int, int>>> v;
+
+    vector<pair<int, pair<int, int> > > v;
     v.clear();
     for (int i = 0; i < 3; i++)
     {
@@ -529,7 +603,7 @@ void hard_comp_move(int *board, int first)
             if (boa[i][j] != 0)
                 continue;
             boa[i][j] = 2;
-            v.push_back(make_pair(dfs(9, 0, boa), make_pair(i, j))); //push optimal place
+            v.push_back(make_pair(dfs(9, 0, boa), make_pair(i, j))); //push optimal place inform of num pair to vector
             boa[i][j] = 0;
         }
     }
@@ -542,6 +616,7 @@ void hard_comp_move(int *board, int first)
     x = v[j].second.first;
     y = v[j].second.second;
     board[3 * x + y] = 2;
+    GREEN
     printf("                    Processing");
     for (int i = 0; i < 6; i++)
     {
@@ -550,6 +625,7 @@ void hard_comp_move(int *board, int first)
         fflush(stdout);
         usleep(180000);
     }
+    CLOSE
     printf("\r");
     char pos_notice[BUFSIZE];
     sprintf(pos_notice, "AI selected position %d", 3 * x + y + 1);
@@ -557,7 +633,7 @@ void hard_comp_move(int *board, int first)
 }
 
 /************UI Functions***************/
-inline void draw_line(char symbol, int width) //draw a 1horizontal line
+inline void draw_line(char symbol, int width) //draw a horizontal line
 {
     for (int i = 0; i < width; i++)
     {
