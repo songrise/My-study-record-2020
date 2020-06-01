@@ -1,20 +1,23 @@
 /************Q1************
-* Input “stack_cats” will output “false”
-* Input “step_on_no_pets” will output “true” 
-* Input “v” will get true 
+* Input "stack_cats" will output "false"
+* Input "step_on_no_pets" will output "true"
+* Input "v" will get true 
 *************************/
 
 /***********Q2************
 * The relation ship can be concluded as:
-* A string is panlindrom, if its substring, 
-* with first and last char removed, is a 
-* panlindrom.
+* A string is panlindrom, if and only if
+* its substring, with first and last 
+* char removed be a panlindrom.
+* i.e. isPalindrom(Sn) == (C1 == Cn) && isPalindrome(Sn-2)
+* where Sn-2 == [C2,C3,C4...,Cn-1]
 *
-* base case: if the length of string is 1 or 2,
+* base case: when the length of string is 0, 1 or 2,
 * in other words, no substring can be further 
-* extracted.(A string of length 1 is always
+* extracted.(A string of length o or 1 is always
 * panlindrom, A string of length 2 is panlindrom
 * if the two char is identical.)
+* i.e. n == 0 || n == 1 || n == 2
 ************************/
 
 #include <iostream>
