@@ -172,12 +172,16 @@ void pvp()
         {
             char win_notice[BUFSIZE];
             sprintf(win_notice, "Player %d win, Congratulations!", winner);
+            GREEN
             msg_box(win_notice);
+            CLOSE
             break;
         }
         else if (i == 8)
         {
+            GREEN
             msg_box("Draw");
+            CLOSE
         }
     }
 }

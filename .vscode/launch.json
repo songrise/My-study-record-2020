@@ -6,6 +6,13 @@
     "configurations": [
         {
             "type": "java",
+            "name": "CodeLens (Launch) - Ex_5_3_1",
+            "request": "launch",
+            "mainClass": "Ex_5_3_1",
+            "projectName": "My-study-record-2020_ed76250a"
+        },
+        {
+            "type": "java",
             "name": "CodeLens (Launch) - showProperties",
             "request": "launch",
             "mainClass": "showProperties",
