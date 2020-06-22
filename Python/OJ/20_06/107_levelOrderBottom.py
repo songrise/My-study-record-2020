@@ -25,3 +25,22 @@ class Solution:
             ans.append(stack.pop())
         return ans
 
+
+
+############Simplified version###########
+class Solution:
+    def levelOrderBottom(self, root: TreeNode) -> List[List[int]]:
+        queue = [root]
+        ans = []
+        while queue:
+            layer = []
+            for _ in range(len(queue)):
+                node = queue.pop(0)
+                if node:
+                    layer.append(node.val)
+                    queue.append(node.left)
+                    queue.append(node.right)
+            if layer:
+                ans.append(layer)
+
+        return ans[::-1]
