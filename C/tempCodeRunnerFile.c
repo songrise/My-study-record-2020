@@ -16,7 +16,7 @@ int main(void)
         }
     }
     //reverse
-    int j = arrLen - 1;
+    int j = arrLen;
 
     for (i = 0; i < arrLen / 2; i++)
     {

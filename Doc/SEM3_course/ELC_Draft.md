@@ -1,0 +1,16 @@
+How language affects our cognition: in the field of color cognition
+
+**Thesis statement**
+
+
+This essay holds the view that language will affect our color cognition, but whether such effect is bilateral still remain to be checked.
+
+****
+
+Sapir-Whorf hypothesis is one of the central theories of linguistics and it holds that our cognition is affected by our native language, so that different language speaker thinks differently. Color cognition difference is the most extensively researched field to examine this hypothesis.
+
+One of the fields of SWH come from color cognition. As Zhong et al. (2018) concluded, many studies in the field of color cognition conducted during past 40 years has supported this hypothesis. For example, Winaswer (2007) conducted a color discrimination test on a group of 50 native English and Russian speakers and found that Russian speakers were faster to differentiate dark blue and light blue than English speakers. They ascribe this discrepancy to language, because Russian make obligatory discrimination between dark blue (goloboy) and light blue (siniy) whilst there is only one word in English. Their study result could be a supporting evidence for Sapir-Whorf hypothesis. Moreover, recent research in the field of neuroscience even found that such [] is lateralized to the left hemisphere of cerebral (Zhong et al. 2018). These .. implies the possible connection between language process and color cognition, as language process center in the left brain may sharpens perceptual difference (Li et al, 2008).
+
+Critics, however, may argue that language is not the only factor that lead to the difference in color categorization speed. In their claim, other factors such as nationality, culture, and lifestyle also contribute to such difference. For example, Yasmina (2014) argues that color cognition is based on universal cognition structure and the perception difference could be originated from various factors. However, their [] is mainly based on logical inference and lack empirical support. As Zhong et al. (2018) concluded after checking various literatures that a great deal of studies has “ruled out” this possibility. A notable example would be the experiment conducted by Zhou et al. (2010). They designed an experiment on 31 adults of same background and treat the experiment group with four made-up word for four stimulus colors. After that, researchers found that they were faster to discriminate those colors than the control group. Their experiment could be an effective to 排除 other 干扰 and support the hypothesis. Based on experimental facts, the possibility of other factors also color cognition could be 
+
+Apart from [], revealed almost no relationship between color naming and color cognition based on results of brain imaging. For example, Siuda-Krzywicka et al. (2019) conducted a color discrimination test on a testee who just recovered from severe stroke and could not read any words. They used fMRI to monitor the brain activity of the testee and come up with the conclusion that  [] Howerver, their study is based on one-case study, so the validity is to be questioned. To say the least, their study could only prove that relationship between color naming and certain of
