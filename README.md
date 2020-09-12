@@ -4,11 +4,11 @@
 [![codebeat badge](https://codebeat.co/badges/13f0a736-5676-4a62-827e-547fa7aedaca)](https://codebeat.co/projects/github-com-songrise-my-study-record-2020-master)
 ![](https://img.shields.io/badge/license-GPL_3.0-2f1244.svg)
 
-
+**This repo is for study year 2019-2020 and may no longer update. Please visit my latest repo: [StudyYear_20_21](https://github.com/songrise/StudyYear_20_21)**
 
 ## 这个库是什么？ Whats this repo for?
 
-这里是我记录自己学习进程repo, 包含我写的练习代码和我的日志。欢迎参观，跪求star。
+这里是我记录自己学习进程repo (2019-2020), 包含我写的练习代码和我的日志。欢迎参观，跪求star。
 
 This is a repository for recording my studying process
 including my source code and study log. You are welcomed to follow and star.
