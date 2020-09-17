@@ -61,5 +61,9 @@ class determinant():
         print("The determinant is:" + str(self.result))
 
 
-zero1 = determinant([[1, -2, -3], [2, -4, -6], [-4, 1, -2]])
-zero1.ShowInfo()
+if __name__ == if __name__ == "__main__":
+    zero1 = determinant([[1, -2, -3], [2, -4, -6], [-4, 1, -2]])
+    zero1.ShowInfo()
+    test = determinant([[1, 2, 1, 1], [0, 1, 1, 4], [
+                       0, 0, -1, 3], [0, 0, 1, -2]])
+    test.ShowInfo()
