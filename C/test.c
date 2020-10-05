@@ -1,33 +1,26 @@
-#include <stdio.h>
+//gcc 5.4.0
 
+#include <stdio.h>
+#include <stdlib.h>
+#define LEN 10
 int main(void)
 {
-    int arr[100], arrLen = 0, i;
-    printf("Input data (-1 to stop): ");
-    while (1)
+    int arr[LEN];
+    for (size_t i = 0; i < LEN; i++)
     {
-        int temp;
-        scanf("%d", &temp);
-        if (temp == -1)
-            break;
-        else
+        arr[i] = rand();
+    }
+
+    int max = arr[0];
+
+    for (int i = 0; i < LEN; i++)
+    {
+        if (arr[i] > max)
         {
-            arr[arrLen++] = temp;
+            max = arr[i];
         }
     }
-    //reverse
-    int j = arrLen - 1;
+    printf("%d", max);
 
-    for (i = 0; i < arrLen / 2; i++)
-    {
-        int temp;
-        temp = arr[i];
-        arr[i] = arr[j];
-        arr[j--] = temp;
-    }
-
-    for (i = 0; i < arrLen; i++)
-    {
-        printf("%d ", arr[i]);
-    }
+    return 0;
 }
